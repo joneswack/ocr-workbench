@@ -39,7 +39,6 @@ run_ocr_experiment() {
 for input_file in ../data/input/*.pdf; do
     input_file=$(basename "$input_file")
     for method in tesseract easyocr suryaocr rapidocr; do
-        echo "Running $method experiment..."
         run_ocr_experiment "$method" "$input_file"
     done
 done
