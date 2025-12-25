@@ -10,7 +10,10 @@ wheels/
 .venv
 
 # Data
-data
+data/**/*.log
+data/**/*.dat
+data/**/*.pdf
+data/**/*.md
 
 # Mac OS
 .DS_Store

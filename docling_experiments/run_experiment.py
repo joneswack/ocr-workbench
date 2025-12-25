@@ -1,4 +1,7 @@
+import json
+import logging
 import os
+import time
 from logging import Logger, getLogger
 from pathlib import Path
 from typing import Annotated, Any, Literal
@@ -16,65 +19,29 @@ from docling.datamodel.pipeline_options import (
 )
 from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling_surya import SuryaOcrOptions
-from utils import load_json_config, monitor_resources, save_text_to_file, setup_logger
 
 logger: Logger = getLogger(__name__)
 
 
-def _get_rapidocr_config(config: dict[str, Any]) -> RapidOcrOptions:
-    """Create RapidOCR configuration with model paths."""
-    base_path = Path(config["modelscope_model_cache_dir"])
-    return RapidOcrOptions(
-        force_full_page_ocr=config["force_full_page_ocr"],
-        lang=config["rapidocr_langs"],
-        det_model_path=str(base_path / config["rapidocr_det_model_rel_path"]),
-        rec_model_path=str(base_path / config["rapidocr_rec_model_rel_path"]),
-        cls_model_path=str(base_path / config["rapidocr_cls_model_rel_path"]),
+def setup_logger(logger: Logger, output_path: Path) -> None:
+    """Set up the logger for the application."""
+    handler = logging.FileHandler(
+        filename=output_path,
+        mode="w",
     )
+    handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(message)s"))
+    logger.addHandler(handler)
+    logger.setLevel(logging.INFO)
 
 
-def get_ocr_options_map(config: dict[str, Any]) -> dict[str, OcrOptions]:
-    """Create map of OCR options based on provided configuration."""
-    return {
-        "tesseract": TesseractOcrOptions(
-            force_full_page_ocr=config["force_full_page_ocr"],
-            lang=config["tesseract_langs"],
-        ),
-        "easyocr": EasyOcrOptions(
-            force_full_page_ocr=config["force_full_page_ocr"],
-            lang=config["easyocr_langs"],
-        ),
-        "suryaocr": SuryaOcrOptions(
-            force_full_page_ocr=config["force_full_page_ocr"],
-            lang=config["suryaocr_langs"],
-        ),
-        "rapidocr": _get_rapidocr_config(config),
-    }
+def load_json_config(config_path: Path) -> dict[str, Any]:
+    """Load configuration from JSON file."""
+    if not config_path.exists():
+        raise FileNotFoundError(f"Config file not found: {config_path}")
 
-
-def _get_pdf_pipeline_options(
-    config: dict[str, Any],
-    ocr_method: str,
-    accelerator_device: AcceleratorDevice,
-) -> PdfPipelineOptions:
-    """Create PDF pipeline options with OCR and accelerator configurations."""
-    ocr_options: OcrOptions = get_ocr_options_map(config)[ocr_method]
-    accelerator_options = AcceleratorOptions(
-        num_threads=config["num_threads"], device=accelerator_device
-    )
-
-    additional_options: dict[str, Any] = {}
-    if isinstance(ocr_options, SuryaOcrOptions):
-        additional_options["ocr_model"] = "suryaocr"
-
-    return PdfPipelineOptions(
-        do_ocr=True,
-        do_table_structure=True,
-        ocr_options=ocr_options,
-        accelerator_options=accelerator_options,
-        allow_external_plugins=True,
-        **additional_options,
-    )
+    with config_path.open("r", encoding="utf-8") as fh:
+        config: dict[str, Any] = json.load(fh)
+        return config
 
 
 def convert_document_to_markdown(
@@ -101,13 +68,79 @@ def convert_document_to_markdown(
     )
 
     logger.info(f"Processing file: {input_file}")
+    logger.info(f"OCR Method: {ocr_method}, Accelerator Device: {accelerator_device}")
 
     try:
+        start_time: float = time.time()
         conversion_result: ConversionResult = doc_converter.convert(source=input_file)
-        return conversion_result.document.export_to_markdown()
+        markdown: str = conversion_result.document.export_to_markdown()
+        logger.info(f"Conversion completed in {time.time() - start_time:.2f} seconds.")
+        return markdown
     except Exception:
         logger.exception("Failed to convert source %s", input_file)
         return ""
+
+
+def save_text_to_file(text: str, output_path: Path) -> None:
+    """Save text content to a file in the specified output path."""
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(text)
+
+
+def _get_rapidocr_config(config: dict[str, Any]) -> RapidOcrOptions:
+    """Create RapidOCR configuration with model paths."""
+    base_path = Path(config["modelscope_model_cache_dir"])
+    return RapidOcrOptions(
+        force_full_page_ocr=config["force_full_page_ocr"],
+        lang=config["rapidocr_langs"],
+        det_model_path=str(base_path / config["rapidocr_det_model_rel_path"]),
+        rec_model_path=str(base_path / config["rapidocr_rec_model_rel_path"]),
+        cls_model_path=str(base_path / config["rapidocr_cls_model_rel_path"]),
+    )
+
+
+def _get_ocr_options_map(config: dict[str, Any]) -> dict[str, OcrOptions]:
+    """Create map of OCR options based on provided configuration."""
+    return {
+        "tesseract": TesseractOcrOptions(
+            force_full_page_ocr=config["force_full_page_ocr"],
+            lang=config["tesseract_langs"],
+        ),
+        "easyocr": EasyOcrOptions(
+            force_full_page_ocr=config["force_full_page_ocr"],
+            lang=config["easyocr_langs"],
+        ),
+        "suryaocr": SuryaOcrOptions(
+            force_full_page_ocr=config["force_full_page_ocr"],
+            lang=config["suryaocr_langs"],
+        ),
+        "rapidocr": _get_rapidocr_config(config),
+    }
+
+
+def _get_pdf_pipeline_options(
+    config: dict[str, Any],
+    ocr_method: str,
+    accelerator_device: AcceleratorDevice,
+) -> PdfPipelineOptions:
+    """Create PDF pipeline options with OCR and accelerator configurations."""
+    ocr_options: OcrOptions = _get_ocr_options_map(config)[ocr_method]
+    accelerator_options = AcceleratorOptions(
+        num_threads=config["num_threads"], device=accelerator_device
+    )
+
+    additional_options: dict[str, Any] = {}
+    if isinstance(ocr_options, SuryaOcrOptions):
+        additional_options["ocr_model"] = "suryaocr"
+
+    return PdfPipelineOptions(
+        do_ocr=True,
+        do_table_structure=True,
+        ocr_options=ocr_options,
+        accelerator_options=accelerator_options,
+        allow_external_plugins=True,
+        **additional_options,
+    )
 
 
 def main(
@@ -134,13 +167,12 @@ def main(
         config_path=Path(__file__).parent / "config.json"
     )
 
-    with monitor_resources(logger=logger):
-        markdown_content: str = convert_document_to_markdown(
-            input_file=input_file,
-            config=config,
-            ocr_method=ocr_method,
-            accelerator_device=accelerator_device,
-        )
+    markdown_content: str = convert_document_to_markdown(
+        input_file=input_file,
+        config=config,
+        ocr_method=ocr_method,
+        accelerator_device=accelerator_device,
+    )
 
     save_text_to_file(
         text=markdown_content,
