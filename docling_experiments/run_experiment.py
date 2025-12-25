@@ -26,6 +26,7 @@ def _get_rapidocr_config(config: dict[str, Any]) -> RapidOcrOptions:
     base_path = Path(config["modelscope_model_cache_dir"])
     return RapidOcrOptions(
         force_full_page_ocr=config["force_full_page_ocr"],
+        lang=config["rapidocr_langs"],
         det_model_path=str(base_path / config["rapidocr_det_model_rel_path"]),
         rec_model_path=str(base_path / config["rapidocr_rec_model_rel_path"]),
         cls_model_path=str(base_path / config["rapidocr_cls_model_rel_path"]),
@@ -37,11 +38,17 @@ def get_ocr_options_map(config: dict[str, Any]) -> dict[str, OcrOptions]:
     return {
         "tesseract": TesseractOcrOptions(
             force_full_page_ocr=config["force_full_page_ocr"],
-            lang=["fra", "deu", "spa", "eng"],
+            lang=config["tesseract_langs"],
         ),
-        "easyocr": EasyOcrOptions(force_full_page_ocr=config["force_full_page_ocr"]),
+        "easyocr": EasyOcrOptions(
+            force_full_page_ocr=config["force_full_page_ocr"],
+            lang=config["easyocr_langs"],
+        ),
+        "suryaocr": SuryaOcrOptions(
+            force_full_page_ocr=config["force_full_page_ocr"],
+            lang=config["suryaocr_langs"],
+        ),
         "rapidocr": _get_rapidocr_config(config),
-        "suryaocr": SuryaOcrOptions(force_full_page_ocr=config["force_full_page_ocr"]),
     }
 
 
@@ -80,8 +87,9 @@ def convert_document_to_markdown(
         }
     )
 
+    logger.info(f"Processing file: {input_file}")
+
     try:
-        logger.info(f"Processing file: {input_file}")
         conversion_result: ConversionResult = doc_converter.convert(source=input_file)
         return conversion_result.document.export_to_markdown()
     except Exception:
@@ -93,7 +101,7 @@ def main(
     input_file: Annotated[Path, typer.Option()],
     output_dir: Annotated[Path, typer.Option()],
     ocr_method: Annotated[
-        Literal["tesseract", "easyocr", "rapidocr", "suryaocr"], typer.Option()
+        Literal["tesseract", "easyocr", "suryaocr", "rapidocr"], typer.Option()
     ],
     accelerator_device: Annotated[Literal["cpu", "mps", "cuda"], typer.Option()],
 ) -> None:
@@ -112,7 +120,7 @@ def main(
     config: dict[str, Any] = load_json_config(
         config_path=Path(__file__).parent / "config.json"
     )
-    os.environ.setdefault("TESSDATA_PREFIX", config["tessdata_prefix"])
+    os.environ.setdefault("TESSDATA_PREFIX", config["tesseract_data_path"])
 
     pipeline_options: PdfPipelineOptions = get_pdf_pipeline_options(
         config=config,
