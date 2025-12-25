@@ -49,12 +49,6 @@ def get_ocr_config_map(config: dict[str, Any]) -> dict[str, OcrOptions]:
     }
 
 
-ACCELERATOR_CONFIGS: dict[str, AcceleratorOptions] = {
-    "cpu": AcceleratorOptions(num_threads=10, device=AcceleratorDevice.CPU),
-    "mps": AcceleratorOptions(num_threads=10, device=AcceleratorDevice.MPS),
-}
-
-
 def load_config(config_path: Path) -> dict[str, Any]:
     """Load configuration from JSON file."""
     if not config_path.exists():
@@ -141,7 +135,7 @@ def main(
     ocr: Annotated[
         Literal["tesseract", "easyocr", "rapidocr", "suryaocr"], typer.Option()
     ],
-    accelerator: Annotated[Literal["cpu", "mps"], typer.Option()],
+    accelerator: Annotated[AcceleratorDevice, typer.Option()],
     input: Annotated[str, typer.Option()],
     output_dir: Annotated[str, typer.Option()],
 ) -> None:
@@ -157,7 +151,7 @@ def main(
     input_path: Path = Path(input)
 
     handler = logging.FileHandler(
-        filename=output_dir_path / f"{input_path.stem}_{accelerator}.log",
+        filename=output_dir_path / f"{input_path.stem}_{accelerator.value}.log",
         mode="w",
     )
     handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(message)s"))
@@ -171,7 +165,7 @@ def main(
     ocr_config_map: dict[str, OcrOptions] = get_ocr_config_map(config)
     ocr_options: OcrOptions = ocr_config_map[ocr]
 
-    accelerator_options: AcceleratorOptions = ACCELERATOR_CONFIGS[accelerator]
+    accelerator_options = AcceleratorOptions(num_threads=10, device=accelerator)
 
     logger.info(f"Processing file: {input_path}")
     start_time: float = time.time()
