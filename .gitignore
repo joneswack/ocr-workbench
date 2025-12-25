@@ -10,10 +10,9 @@ wheels/
 .venv
 
 # Data
-data/**/*.log
-data/**/*.dat
-data/**/*.pdf
-data/**/*.md
+data/
+!data/.gitkeep
+!data/**/.gitkeep
 
 # Mac OS
 .DS_Store
