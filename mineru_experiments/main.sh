@@ -1,0 +1,2 @@
+mprof run --include-children mineru -d mps -m ocr -l en -b pipeline -p /Users/jonaswacker/dev/datasets/Industry_Documents_Library/lxpj0226/lxpj0226.pdf -o ../data/mineru
+# mineru -p /Users/jonaswacker/dev/datasets/Industry_Documents_Library/lxpj0226/lxpj0226.pdf -o ../data/mineru
