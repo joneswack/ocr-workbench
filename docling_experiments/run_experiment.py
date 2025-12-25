@@ -1,14 +1,8 @@
-import json
-import logging
 import os
-import threading
-import time
-from contextlib import contextmanager
-from logging import Logger
+from logging import Logger, getLogger
 from pathlib import Path
 from typing import Annotated, Any, Literal
 
-import psutil
 import typer
 from docling.datamodel.accelerator_options import AcceleratorDevice, AcceleratorOptions
 from docling.datamodel.base_models import InputFormat
@@ -22,15 +16,16 @@ from docling.datamodel.pipeline_options import (
 )
 from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling_surya import SuryaOcrOptions
+from utils import load_json_config, monitor_resources, save_text_to_file, setup_logger
 
-logger: Logger = logging.getLogger(__name__)
+logger: Logger = getLogger(__name__)
 
 
 def _get_rapidocr_config(config: dict[str, Any]) -> RapidOcrOptions:
     """Create RapidOCR configuration with model paths."""
     base_path = Path(config["modelscope_model_cache_dir"])
     return RapidOcrOptions(
-        force_full_page_ocr=False,
+        force_full_page_ocr=config["force_full_page_ocr"],
         det_model_path=str(base_path / config["rapidocr_det_model_rel_path"]),
         rec_model_path=str(base_path / config["rapidocr_rec_model_rel_path"]),
         cls_model_path=str(base_path / config["rapidocr_cls_model_rel_path"]),
@@ -41,32 +36,26 @@ def get_ocr_config_map(config: dict[str, Any]) -> dict[str, OcrOptions]:
     """Create OCR configurations with the provided modelscope cache directory."""
     return {
         "tesseract": TesseractOcrOptions(
-            force_full_page_ocr=False, lang=["fra", "deu", "spa", "eng"]
+            force_full_page_ocr=config["force_full_page_ocr"],
+            lang=["fra", "deu", "spa", "eng"],
         ),
-        "easyocr": EasyOcrOptions(force_full_page_ocr=False),
+        "easyocr": EasyOcrOptions(force_full_page_ocr=config["force_full_page_ocr"]),
         "rapidocr": _get_rapidocr_config(config),
-        "suryaocr": SuryaOcrOptions(force_full_page_ocr=False),
+        "suryaocr": SuryaOcrOptions(force_full_page_ocr=config["force_full_page_ocr"]),
     }
 
 
-def load_config(config_path: Path) -> dict[str, Any]:
-    """Load configuration from JSON file."""
-    if not config_path.exists():
-        raise FileNotFoundError(f"Config file not found: {config_path}")
-
-    with config_path.open("r", encoding="utf-8") as fh:
-        return json.load(fh)
-
-
-def setup_environment(config: dict[str, Any]) -> None:
-    """Configure environment variables based on config."""
-    os.environ.setdefault("TESSDATA_PREFIX", config["tessdata_prefix"])
-
-
 def get_pdf_pipeline_options(
-    ocr_options: OcrOptions, accelerator_options: AcceleratorOptions
+    config: dict[str, Any],
+    ocr_method: str,
+    accelerator_device: AcceleratorDevice,
 ) -> PdfPipelineOptions:
     """Create PDF pipeline options with OCR and accelerator configurations."""
+    ocr_options: OcrOptions = get_ocr_config_map(config)[ocr_method]
+    accelerator_options = AcceleratorOptions(
+        num_threads=config["num_threads"], device=accelerator_device
+    )
+
     additional_options: dict[str, Any] = {}
     if isinstance(ocr_options, SuryaOcrOptions):
         additional_options["ocr_model"] = "suryaocr"
@@ -82,7 +71,7 @@ def get_pdf_pipeline_options(
 
 
 def convert_document_to_markdown(
-    pipeline_options: PdfPipelineOptions, source: str | Path
+    input_file: str | Path, pipeline_options: PdfPipelineOptions
 ) -> str:
     """Convert a document to markdown using the provided pipeline options."""
     doc_converter = DocumentConverter(
@@ -92,101 +81,54 @@ def convert_document_to_markdown(
     )
 
     try:
-        conversion_result: ConversionResult = doc_converter.convert(source=source)
+        logger.info(f"Processing file: {input_file}")
+        conversion_result: ConversionResult = doc_converter.convert(source=input_file)
         return conversion_result.document.export_to_markdown()
     except Exception:
-        logger.exception("Failed to convert source %s", source)
+        logger.exception("Failed to convert source %s", input_file)
         return ""
 
 
-def save_markdown_to_file(output_path: Path, markdown_content: str) -> None:
-    """Save markdown content to a file in the specified output path."""
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(markdown_content)
-    logger.info("Wrote markdown: %s", output_path)
-
-
-@contextmanager
-def print_memory_usage(poll_interval: float = 0.01):
-    """Context manager to monitor and print peak memory usage."""
-    process = psutil.Process(os.getpid())
-    peak_rss: float = 0.0
-    stop_event = threading.Event()
-
-    def monitor():
-        nonlocal peak_rss
-        while not stop_event.is_set():
-            rss = process.memory_info().rss
-            peak_rss = max(peak_rss, rss)
-            time.sleep(poll_interval)
-
-    monitor_thread = threading.Thread(target=monitor, daemon=True)
-    monitor_thread.start()
-
-    try:
-        yield
-    finally:
-        stop_event.set()
-        monitor_thread.join()
-        logger.info("Peak RSS: %.2f MB", peak_rss / 1024**2)
-
-
 def main(
-    ocr: Annotated[
+    input_file: Annotated[Path, typer.Option()],
+    output_dir: Annotated[Path, typer.Option()],
+    ocr_method: Annotated[
         Literal["tesseract", "easyocr", "rapidocr", "suryaocr"], typer.Option()
     ],
-    accelerator: Annotated[AcceleratorDevice, typer.Option()],
-    input: Annotated[str, typer.Option()],
-    output_dir: Annotated[str, typer.Option()],
+    accelerator_device: Annotated[Literal["cpu", "mps", "cuda"], typer.Option()],
 ) -> None:
     """Main function to run the OCR experiment.
 
     Args:
-        ocr: OCR engine to use.
-        accelerator: Accelerator type (cpu or mps).
-        input: Path to input PDF file.
-        output_dir: Directory to save output markdown.
+        input_file: Path to input PDF file.
+        output_dir: Directory to save output markdown to.
+        ocr_method: OCR engine to use.
+        accelerator_device: Accelerator device.
     """
-    output_dir_path: Path = Path(output_dir)
-    input_path: Path = Path(input)
-
-    handler = logging.FileHandler(
-        filename=output_dir_path / f"{input_path.stem}_{accelerator.value}.log",
-        mode="w",
+    setup_logger(
+        logger=logger,
+        output_path=output_dir / f"{input_file.stem}_{accelerator_device}.log",
     )
-    handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(message)s"))
-    logger.addHandler(handler)
-    logger.setLevel(logging.INFO)
-
-    config_path: Path = Path(__file__).parent / "config.json"
-    config: dict[str, Any] = load_config(config_path)
-    setup_environment(config)
-
-    ocr_config_map: dict[str, OcrOptions] = get_ocr_config_map(config)
-    ocr_options: OcrOptions = ocr_config_map[ocr]
-
-    accelerator_options = AcceleratorOptions(num_threads=10, device=accelerator)
-
-    logger.info(f"Processing file: {input_path}")
-    start_time: float = time.time()
+    config: dict[str, Any] = load_json_config(
+        config_path=Path(__file__).parent / "config.json"
+    )
+    os.environ.setdefault("TESSDATA_PREFIX", config["tessdata_prefix"])
 
     pipeline_options: PdfPipelineOptions = get_pdf_pipeline_options(
-        ocr_options=ocr_options,
-        accelerator_options=accelerator_options,
+        config=config,
+        ocr_method=ocr_method,
+        accelerator_device=AcceleratorDevice(accelerator_device),
     )
 
-    with print_memory_usage():
+    with monitor_resources(logger=logger):
         markdown_content: str = convert_document_to_markdown(
-            pipeline_options=pipeline_options, source=input_path
+            input_file=input_file, pipeline_options=pipeline_options
         )
 
-    save_markdown_to_file(
-        output_path=output_dir_path / f"{input_path.stem}.md",
-        markdown_content=markdown_content,
+    save_text_to_file(
+        text=markdown_content,
+        output_path=output_dir / f"{input_file.stem}.md",
     )
-
-    elapsed_time: float = time.time() - start_time
-    logger.info("Processing completed. Time taken: %.2f seconds", elapsed_time)
 
 
 if __name__ == "__main__":

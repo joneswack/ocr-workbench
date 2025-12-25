@@ -1,4 +1,6 @@
 {
+    "num_threads": 10,
+    "force_full_page_ocr": false,
     "modelscope_model_cache_dir": "~/.cache/modelscope/hub/models",
     "rapidocr_det_model_rel_path": "RapidAI/RapidOCR/onnx/PP-OCRv5/det/ch_PP-OCRv5_server_det.onnx",
     "rapidocr_rec_model_rel_path": "RapidAI/RapidOCR/onnx/PP-OCRv5/rec/ch_PP-OCRv5_rec_server_infer.onnx",

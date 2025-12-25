@@ -11,7 +11,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/docling_experiments",
-            "args": ["--ocr", "tesseract", "--accelerator", "cpu", "--input", "../data/input/lxpj0226.pdf", "--output-dir", "../data/output/tesseract"]
+            "args": ["--input-file", "../data/input/lxpj0226.pdf", "--output-dir", "../data/output/tesseract", "--ocr-method", "tesseract", "--accelerator-device", "cpu"]
         }
     ]
 }
