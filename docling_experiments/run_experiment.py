@@ -84,6 +84,10 @@ def convert_document_to_markdown(
     accelerator_device: str,
 ) -> str:
     """Convert a document to markdown using the provided pipeline options."""
+
+    # Set TESSDATA_PREFIX environment variable for Tesseract OCR
+    os.environ.setdefault("TESSDATA_PREFIX", config["tesseract_data_path"])
+
     pipeline_options: PdfPipelineOptions = _get_pdf_pipeline_options(
         config=config,
         ocr_method=ocr_method,
@@ -129,7 +133,6 @@ def main(
     config: dict[str, Any] = load_json_config(
         config_path=Path(__file__).parent / "config.json"
     )
-    os.environ.setdefault("TESSDATA_PREFIX", config["tesseract_data_path"])
 
     with monitor_resources(logger=logger):
         markdown_content: str = convert_document_to_markdown(
