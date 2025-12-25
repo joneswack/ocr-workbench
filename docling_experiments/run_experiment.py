@@ -32,8 +32,8 @@ def _get_rapidocr_config(config: dict[str, Any]) -> RapidOcrOptions:
     )
 
 
-def get_ocr_config_map(config: dict[str, Any]) -> dict[str, OcrOptions]:
-    """Create OCR configurations with the provided modelscope cache directory."""
+def get_ocr_options_map(config: dict[str, Any]) -> dict[str, OcrOptions]:
+    """Create map of OCR options based on provided configuration."""
     return {
         "tesseract": TesseractOcrOptions(
             force_full_page_ocr=config["force_full_page_ocr"],
@@ -51,7 +51,7 @@ def get_pdf_pipeline_options(
     accelerator_device: AcceleratorDevice,
 ) -> PdfPipelineOptions:
     """Create PDF pipeline options with OCR and accelerator configurations."""
-    ocr_options: OcrOptions = get_ocr_config_map(config)[ocr_method]
+    ocr_options: OcrOptions = get_ocr_options_map(config)[ocr_method]
     accelerator_options = AcceleratorOptions(
         num_threads=config["num_threads"], device=accelerator_device
     )
