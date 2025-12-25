@@ -52,7 +52,7 @@ def get_ocr_options_map(config: dict[str, Any]) -> dict[str, OcrOptions]:
     }
 
 
-def get_pdf_pipeline_options(
+def _get_pdf_pipeline_options(
     config: dict[str, Any],
     ocr_method: str,
     accelerator_device: AcceleratorDevice,
@@ -78,9 +78,18 @@ def get_pdf_pipeline_options(
 
 
 def convert_document_to_markdown(
-    input_file: str | Path, pipeline_options: PdfPipelineOptions
+    input_file: str | Path,
+    config: dict[str, Any],
+    ocr_method: str,
+    accelerator_device: str,
 ) -> str:
     """Convert a document to markdown using the provided pipeline options."""
+    pipeline_options: PdfPipelineOptions = _get_pdf_pipeline_options(
+        config=config,
+        ocr_method=ocr_method,
+        accelerator_device=AcceleratorDevice(accelerator_device),
+    )
+
     doc_converter = DocumentConverter(
         format_options={
             InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options)
@@ -122,15 +131,12 @@ def main(
     )
     os.environ.setdefault("TESSDATA_PREFIX", config["tesseract_data_path"])
 
-    pipeline_options: PdfPipelineOptions = get_pdf_pipeline_options(
-        config=config,
-        ocr_method=ocr_method,
-        accelerator_device=AcceleratorDevice(accelerator_device),
-    )
-
     with monitor_resources(logger=logger):
         markdown_content: str = convert_document_to_markdown(
-            input_file=input_file, pipeline_options=pipeline_options
+            input_file=input_file,
+            config=config,
+            ocr_method=ocr_method,
+            accelerator_device=accelerator_device,
         )
 
     save_text_to_file(
