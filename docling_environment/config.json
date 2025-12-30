@@ -1,6 +1,7 @@
 {
     "num_threads": 10,
     "force_full_page_ocr": true,
+    "ocr_engines": ["tesseract", "easyocr", "suryaocr", "rapidocr"],
     "modelscope_model_cache_dir": "/Users/jonaswacker/.cache/modelscope/hub/models",
     "tesseract_data_path": "/opt/homebrew/share/tessdata/",
     "tesseract_langs": ["fra", "deu", "spa", "eng"],
