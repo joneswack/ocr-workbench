@@ -21,7 +21,7 @@ Scanned documents are essentially collections of images stored in PDF format. Wh
 
 **Aren't VLMs much better than OCR engines?**
 
-Vision-Language Models (VLMs) can read text in images and even understand image semantics, but their outputs are inherently non-deterministic. This lack of reproducibility—along with the risk of hallucinated or missing text—often makes them unsuitable for production and regulated environments. As of today, OCR engines are still the preferred choice in these scenarios.
+Vision-Language Models (VLMs) can read text in images and even understand image semantics, but their outputs are inherently non-deterministic. This lack of reproducibility—along with the risk of hallucinated or missing text—often makes them unsuitable for production and regulated environments. As of today, OCR engines are still the preferred choice by many companies in these scenarios.
 
 ## Installation
 
