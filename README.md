@@ -87,6 +87,6 @@ OCR quality is subjectively graded and compared based on the markdown output.
 
 ### Information About Coca-Cola Volume Growth
 
-| OCR-Library          | Text | Tables | Forms | Charts | Speed \[seconds\] | Resource Consumption [CPU] |
-|----------------------|------|--------|-------|--------|-------------------|----------------------------|
-| Docling - Tesseract  | Poor | Poor   | Poor  | Poor   | CPU: 34, MPS: X   | 1685 MB                    |
+| OCR-Library          | Text | Tables | Forms | Charts | Speed \[seconds\]   | Resource Consumption [CPU] |
+|----------------------|------|--------|-------|--------|---------------------|----------------------------|
+| Docling - Tesseract  | Poor | Poor   | Poor  | Poor   | CPU: 34<br>MPS: X   | 1685 MB                    |
