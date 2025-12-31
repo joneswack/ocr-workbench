@@ -14,6 +14,7 @@ Features:
 - Executable code setup for the above libraries
 - Automatic conversion of all provided PDF files in ``data/input`` into markdown using all methods
 - Memory and time tracking for each method
+- Hardware acceleration using CPU, MPS and CUDA
 
 ## Why do we still care about OCR?
 
