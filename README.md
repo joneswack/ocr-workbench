@@ -11,9 +11,9 @@ Currently, the following libraries are supported:
 - [Azure Document Intelligence](https://azure.microsoft.com/en-us/products/ai-foundry/tools/document-intelligence)
 
 Features:
-- Prepared code setups for the above libraries
-- Automatic conversion of all provided PDF files into markdown
-- Memory and time tracking
+- Executable code setup for the above libraries
+- Automatic conversion of all provided PDF files in ``data/input`` into markdown using all methods
+- Memory and time tracking for each method
 
 ## Why do we still care about OCR?
 
