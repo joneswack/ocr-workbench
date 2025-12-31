@@ -83,7 +83,7 @@ The following publicly available PDFs were placed in ``data/input``:
 \* the sample image was saved as a PDF file.
 
 We derived the following comparison from our experiments.
-Speed and memory performance are explicitly measured.
+Speed and memory performance are measured on a Macbook Air M4 for CPU and MPS, and on an NVIDIA X for CUDA.
 OCR quality is subjectively graded and compared based on the markdown output stored in ``data/output/<ocr-method>/<file-name>.md``.
 
 ### Information About Coca-Cola Volume Growth
