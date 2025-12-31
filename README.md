@@ -71,7 +71,7 @@ The markdown output is stored in ``data/output/<ocr-method>/<file-name>.md``.
 
 For docling, there exists an additional ``config.json`` file with some preconfigured defaults. You can change it based on your needs. In particular, you can select the OCR engines to compare.
 
-## Some sample results
+## Evaluation on a few sample documents
 
 The following publicly available PDFs were placed in ``data/input``:
 - [Information About Coca-Cola Volume Growth](https://www.industrydocuments.ucsf.edu/all-industries/documents/viewer/?iid=lxpj0226&id=lxpj0226&q=%5Bobject+Object%5D&db-set=documents&sort=&pg=1&npp=20&industry=all-industries&rtool=download)
@@ -81,9 +81,9 @@ The following publicly available PDFs were placed in ``data/input``:
 
 \* the sample image was saved as a PDF file.
 
-We obtained the following results in our experiments.
+We derived the following comparison from our experiments.
 Speed and memory performance are explicitly measured.
-OCR quality is subjectively graded and compared based on the markdown output.
+OCR quality is subjectively graded and compared based on the markdown output stored in ``data/output/<ocr-method>/<file-name>.md``.
 
 ### Information About Coca-Cola Volume Growth
 
