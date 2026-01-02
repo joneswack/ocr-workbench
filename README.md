@@ -3,7 +3,7 @@
 OCR Workbench is a ready-to-use framework for easily comparing popular OCR libraries in Python. It abstracts away the individual setup and usage details of each library, allowing you to focus on evaluating results on your data rather than spending time implementing each method yourself.
 
 Simply provide a collection of PDF files and run the experiments.
-Then select the library that works best for your use case.
+Then select a library for your use case that gives the best evaluation results.
 
 Currently, the following libraries are supported:
 - [Docling](https://docling-project.github.io/docling/) including tesseract, EasyOCR, RapidOCR, surya
@@ -74,7 +74,9 @@ For docling, there exists an additional ``config.json`` file with some preconfig
 
 ## Evaluation on a few sample documents
 
-The following publicly available PDFs were placed in ``data/input``:
+We produced OCR outputs for four example documents and compared them in terms of OCR quality as well as OCR resource consumption.
+
+The following publicly available PDFs were used and saved in ``data/input``:
 - [Information About Coca-Cola Volume Growth](https://www.industrydocuments.ucsf.edu/all-industries/documents/viewer/?iid=lxpj0226&id=lxpj0226&q=%5Bobject+Object%5D&db-set=documents&sort=&pg=1&npp=20&industry=all-industries&rtool=download)
 - [Handwriting Sample from NIST Special Database 19](https://www.nist.gov/srd/nist-special-database-19)*
 - [2020 Annual Report Midwest Food Bank](https://midwestfoodbank.org/images/AR_2020_WEB2.pdf)
@@ -82,12 +84,11 @@ The following publicly available PDFs were placed in ``data/input``:
 
 \* the sample image was saved as a PDF file.
 
-We derived the following comparison from our experiments.
 Speed and memory performance are measured on a Macbook Air M4 for CPU and MPS, and on an NVIDIA X for CUDA.
 OCR quality is subjectively graded and compared based on the markdown output stored in ``data/output/<ocr-method>/<file-name>.md``.
 
 ### Information About Coca-Cola Volume Growth
 
-| OCR-Library          | Text | Tables | Forms | Charts | Speed \[seconds\]   | Resource Consumption [CPU] |
+| OCR-Library          | Text | Tables | Forms | Charts | Speed \[seconds\]   | Memory Usage [CPU]         |
 |----------------------|------|--------|-------|--------|---------------------|----------------------------|
 | Docling - Tesseract  | Poor | Poor   | Poor  | Poor   | CPU: 34<br>MPS: X   | 1685 MB                    |
