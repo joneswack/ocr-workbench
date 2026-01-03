@@ -94,6 +94,6 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 |-------------|--------------------|-------------------|------------------|
 | Docling - Tesseract | Poor (misses text, confuses table entries, doesn't read checkboxes correctly) | CPU: 34<br>MPS: 34 | 3 GB |
 | Docling - EasyOCR | Medium (reads text well, confuses some table entries, doesn't read checkboxes correctly) | CPU: 129<br>MPS: 52 | 11.4 GB |
-| Docling - suryaocr | Good (reads text well, gets table entries correct, gets most checkboxes correct) | CPU: 369<br>MPS: 379 | 3.7 GB |
+| Docling - suryaocr | Very good (reads text well, gets table entries correct, gets most checkboxes correct) | CPU: 369<br>MPS: 379 | 3.7 GB |
 | Docling - RapidOCR | Good (reads text well, gets table entries correct, gets some checkboxes correct) | CPU: 161<br>MPS: 160 | 6.4 GB |
 | MinerU | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 160<br>MPS: 132 | 4.3 GB |
