@@ -80,7 +80,7 @@ The following publicly available PDFs were used and saved in ``data/input``:
 - [Information About Coca-Cola Volume Growth](https://www.industrydocuments.ucsf.edu/all-industries/documents/viewer/?iid=lxpj0226&id=lxpj0226&q=%5Bobject+Object%5D&db-set=documents&sort=&pg=1&npp=20&industry=all-industries&rtool=download)
 - [Handwriting Sample from NIST Special Database 19](https://www.nist.gov/srd/nist-special-database-19)*
 - [2020 Annual Report Midwest Food Bank](https://midwestfoodbank.org/images/AR_2020_WEB2.pdf)
-- [RKI: Epidemiologisches Bulletin (German)](https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2025/50_25.pdf?__blob=publicationFile&v=8)
+- [RKI: Epidemiologisches Bulletin](https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2025/50_25.pdf?__blob=publicationFile&v=8) (German)
 
 \* the sample image was saved as a PDF file.
 
