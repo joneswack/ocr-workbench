@@ -416,7 +416,7 @@ chunking = [
 ]
 
 [[package]]
-name = "docling-experiments"
+name = "docling-environment"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

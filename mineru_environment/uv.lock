@@ -1530,7 +1530,7 @@ core = [
 ]
 
 [[package]]
-name = "mineru-experiments"
+name = "mineru-environment"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
