@@ -10,7 +10,7 @@ wheels/
 .venv
 
 # VS Code
-.vscode/
+.vscode
 
 # Data
 data/
