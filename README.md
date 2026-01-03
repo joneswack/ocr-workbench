@@ -84,11 +84,12 @@ The following publicly available PDFs were used and saved in ``data/input``:
 
 \* the sample image was saved as a PDF file.
 
-Speed and memory performance are measured on a Macbook Air M4 for CPU and MPS, and on an NVIDIA X for CUDA.
+Speed is measured on a Macbook Air M4 for CPU and MPS, and on an NVIDIA X for CUDA.
+Memory usage is measured only once for CPU.
 OCR quality is subjectively graded and compared based on the markdown output stored in ``data/output/<ocr-method>/<file-name>.md``.
 
 ### Information About Coca-Cola Volume Growth
 
-| OCR-Library          | Text | Tables | Forms | Charts | Speed \[seconds\]   | Memory Usage [CPU]         |
-|----------------------|------|--------|-------|--------|---------------------|----------------------------|
-| Docling - Tesseract  | Poor | Poor   | Poor  | Poor   | CPU: 34<br>MPS: X   | 1685 MB                    |
+| OCR-Library | Extraction Quality | Speed \[seconds\] | CPU Memory Usage |
+|-------------|--------------------|-------------------|------------------|
+| Docling - Tesseract | Poor (misses text, confuses table entries, doesn't read checkboxes correctly) | CPU: 34<br>MPS: X | 1685 MB |
