@@ -1,0 +1,12 @@
+[project]
+name = "docint-environment"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "azure-ai-documentintelligence>=1.0.2",
+    "matplotlib>=3.10.8",
+    "memory-profiler>=0.61.0",
+    "typer>=0.21.1",
+]

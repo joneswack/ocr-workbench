@@ -1,0 +1,4 @@
+{
+    "document_intelligence_endpoint": "https://azfoundry-debug-dev-eucentral.cognitiveservices.azure.com/",
+    "document_intelligence_key": "<place your key here>"
+}
