@@ -25,10 +25,7 @@ logger: Logger = getLogger(__name__)
 
 def setup_logger(logger: Logger, output_path: Path) -> None:
     """Set up the logger for the application."""
-    handler = logging.FileHandler(
-        filename=output_path,
-        mode="w",
-    )
+    handler = logging.StreamHandler()
     handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(message)s"))
     logger.addHandler(handler)
     logger.setLevel(logging.INFO)
@@ -71,10 +68,8 @@ def convert_document_to_markdown(
     logger.info(f"OCR Method: {ocr_method}, Accelerator Device: {accelerator_device}")
 
     try:
-        start_time: float = time.time()
         conversion_result: ConversionResult = doc_converter.convert(source=input_file)
         markdown: str = conversion_result.document.export_to_markdown()
-        logger.info(f"Conversion completed in {time.time() - start_time:.2f} seconds.")
         return markdown
     except Exception:
         logger.exception("Failed to convert source %s", input_file)

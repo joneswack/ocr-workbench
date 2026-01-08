@@ -48,12 +48,18 @@ run_ocr_experiment() {
     local output_dir="../data/output/$method"
     local profile_file="$output_dir/$input_file$PROFILE_SUFFIX"
     
+    local start_time=$(date +%s)
+    
     rm -f "$profile_file"
     mprof run --output "$profile_file" run_experiment.py \
         --input-file "../data/input/$input_file" \
         --output-dir "$output_dir" \
         --ocr-method "$method" \
         --accelerator-device "$ACCELERATOR_DEVICE"
+    
+    local end_time=$(date +%s)
+    local execution_time=$((end_time - start_time))
+    echo "[$method] Execution time: ${execution_time}s ($(($execution_time / 60))m $(($execution_time % 60))s)"
 }
 
 # Go through each input file and OCR method

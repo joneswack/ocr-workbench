@@ -14,7 +14,7 @@ Features:
 - Executable code setup for the above libraries
 - Automatic conversion of all provided PDF files in ``data/input`` into markdown using all methods
 - Hardware acceleration using CPU, MPS and CUDA
-- Time and memory (cpu only) tracking for each method
+- Time and cpu-memory tracking for each method
 
 ## Why do we still care about OCR?
 
@@ -22,7 +22,7 @@ Scanned documents are essentially collections of images stored in PDF format. Wh
 
 **Aren't VLMs much better than OCR engines?**
 
-Vision-Language Models (VLMs) can read text in images and even understand image semantics, but their outputs are inherently non-deterministic. This lack of reproducibility—along with the risk of hallucinated or missing text—often makes them unsuitable for production and regulated environments. As of today, OCR engines are still the preferred choice by many companies in these scenarios.
+Vision-Language Models (VLMs) can read text in images and even understand image semantics, but their outputs are inherently non-deterministic. This lack of reproducibility—along with the risk of hallucinated or missing text output—often makes them unsuitable for production and regulated environments. As of today, OCR engines are still the preferred choice by many companies in these scenarios. This repository focuses on OCR methods only. Future work may focus on VLMs instead.
 
 ## Installation
 
@@ -70,6 +70,11 @@ sh run_experiments.sh -i <input-file> -a <accelerator>
 
 The markdown output is stored in ``data/output/<ocr-method>/<file-name>.md``.
 
+In order to visualize CPU memory over time, run:
+```console
+mprof plot ../data/output/<ocr-method>/<file-name>_mem_cpu.dat
+```
+
 For docling, there exists an additional ``config.json`` file with some preconfigured defaults. You can change it based on your needs. In particular, you can select the OCR engines to compare.
 
 ## Evaluation on a few sample documents
@@ -96,4 +101,4 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 | Docling - EasyOCR | Medium (reads text well, confuses some table entries, doesn't read checkboxes correctly) | CPU: 129<br>MPS: 52 | 11.4 GB |
 | Docling - suryaocr | Very good (reads text well, gets table entries correct, gets most checkboxes correct) | CPU: 369<br>MPS: 379 | 3.7 GB |
 | Docling - RapidOCR | Good (reads text well, gets table entries correct, gets some checkboxes correct) | CPU: 161<br>MPS: 160 | 6.4 GB |
-| MinerU | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 160<br>MPS: 132 | 4.3 GB |
+| MinerU | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 160<br>MPS: 50 | 4.3 GB |
