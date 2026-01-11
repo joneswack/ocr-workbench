@@ -109,6 +109,7 @@ def _get_ocr_options_map(config: dict[str, Any]) -> dict[str, OcrOptions]:
         "suryaocr": SuryaOcrOptions(
             force_full_page_ocr=config["force_full_page_ocr"],
             lang=config["suryaocr_langs"],
+            # use_gpu=True,
         ),
         "rapidocr": _get_rapidocr_config(config),
     }
