@@ -1,7 +1,6 @@
 import json
 import logging
 import os
-import time
 from logging import Logger, getLogger
 from pathlib import Path
 from typing import Annotated, Any, Literal
@@ -16,6 +15,7 @@ from docling.datamodel.pipeline_options import (
     PdfPipelineOptions,
     RapidOcrOptions,
     TesseractOcrOptions,
+    ThreadedPdfPipelineOptions,
 )
 from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling_surya import SuryaOcrOptions
@@ -82,19 +82,6 @@ def save_text_to_file(text: str, output_path: Path) -> None:
     output_path.write_text(text)
 
 
-def _get_rapidocr_config(config: dict[str, Any]) -> RapidOcrOptions:
-    """Create RapidOCR configuration with model paths."""
-    # base_path = Path(config["modelscope_model_cache_dir"])
-    return RapidOcrOptions(
-        backend="torch",
-        force_full_page_ocr=config["force_full_page_ocr"],
-        lang=config["rapidocr_langs"],
-        # det_model_path=str(base_path / config["rapidocr_det_model_rel_path"]),
-        # rec_model_path=str(base_path / config["rapidocr_rec_model_rel_path"]),
-        # cls_model_path=str(base_path / config["rapidocr_cls_model_rel_path"]),
-    )
-
-
 def _get_ocr_options_map(config: dict[str, Any]) -> dict[str, OcrOptions]:
     """Create map of OCR options based on provided configuration."""
     return {
@@ -109,9 +96,12 @@ def _get_ocr_options_map(config: dict[str, Any]) -> dict[str, OcrOptions]:
         "suryaocr": SuryaOcrOptions(
             force_full_page_ocr=config["force_full_page_ocr"],
             lang=config["suryaocr_langs"],
-            # use_gpu=True,
         ),
-        "rapidocr": _get_rapidocr_config(config),
+        "rapidocr": RapidOcrOptions(
+            backend="torch",
+            force_full_page_ocr=config["force_full_page_ocr"],
+            lang=config["rapidocr_langs"],
+        ),
     }
 
 
@@ -130,7 +120,10 @@ def _get_pdf_pipeline_options(
     if isinstance(ocr_options, SuryaOcrOptions):
         additional_options["ocr_model"] = "suryaocr"
 
-    return PdfPipelineOptions(
+    return ThreadedPdfPipelineOptions(
+        ocr_batch_size=config["ocr_batch_size"],  # default 4
+        layout_batch_size=config["layout_batch_size"],  # default 4
+        table_batch_size=config["table_batch_size"],  # currently not using GPU batching
         do_ocr=True,
         do_table_structure=True,
         ocr_options=ocr_options,

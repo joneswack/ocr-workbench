@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "hf-transfer>=0.1.9",
     "memory-profiler>=0.61.0",
     "mineru[core]>=2.6.8",
 ]

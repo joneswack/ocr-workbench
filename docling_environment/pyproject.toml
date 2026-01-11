@@ -9,11 +9,10 @@ dependencies = [
     "docling>=2.65.0",
     "docling-surya>=0.1.0",
     "easyocr>=1.7.2",
+    "hf-transfer>=0.1.9",
     "memory-profiler>=0.61.0",
     "modelscope>=1.33.0",
-    "onnxruntime>=1.23.2",
     "rapidocr>=3.4.5",
     "tesserocr>=2.9.2",
     "typer>=0.19.2",
-    "ultralytics>=8.3.240",
 ]

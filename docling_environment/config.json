@@ -1,14 +1,13 @@
 {
     "num_threads": 10,
+    "ocr_batch_size": 64,
+    "layout_batch_size": 64,
+    "table_batch_size": 4,
     "force_full_page_ocr": true,
     "ocr_engines": ["tesseract", "easyocr", "suryaocr", "rapidocr"],
-    "modelscope_model_cache_dir": "/Users/jonaswacker/.cache/modelscope/hub/models",
     "tesseract_data_path": "/opt/homebrew/share/tessdata/",
     "tesseract_langs": ["fra", "deu", "spa", "eng"],
     "easyocr_langs": ["fr", "de", "es", "en"],
     "suryaocr_langs": ["en"],
-    "rapidocr_langs": ["english", "chinese"],
-    "rapidocr_det_model_rel_path": "RapidAI/RapidOCR/onnx/PP-OCRv5/det/ch_PP-OCRv5_server_det.onnx",
-    "rapidocr_rec_model_rel_path": "RapidAI/RapidOCR/onnx/PP-OCRv5/rec/ch_PP-OCRv5_rec_server_infer.onnx",
-    "rapidocr_cls_model_rel_path": "RapidAI/RapidOCR/onnx/PP-OCRv4/cls/ch_ppocr_mobile_v2.0_cls_infer.onnx"
+    "rapidocr_langs": ["english", "chinese"]
 }

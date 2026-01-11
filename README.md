@@ -44,7 +44,8 @@ brew install tesseract
 brew install tesseract-lang
 ```
 
-Additionally, the correct paths for the tesseract and modelscope (used by RapidOCR) directories need to be set in ``docling_environment/config.json``.
+Additionally, the correct path for the tesseract data directory needs to be set in ``docling_environment/config.json`` if you plan on using tesseract.
+See [https://tesseract-ocr.github.io/tessdoc/Installation.html](https://tesseract-ocr.github.io/tessdoc/Installation.html) for an explanation.
 
 ## Running experiments
 
@@ -89,7 +90,7 @@ The following publicly available PDFs were used and saved in ``data/input``:
 
 \* the sample image was saved as a PDF file.
 
-Speed is measured on a Macbook Air M4 for CPU and MPS, and on an NVIDIA X for CUDA.
+Speed is measured on a Macbook Air M4 for CPU and MPS, and on an NVIDIA RTX 5090 GPU (32 GB VRAM).
 Memory usage is measured only once for CPU.
 OCR quality is subjectively graded and compared based on the markdown output stored in ``data/output/<ocr-method>/<file-name>.md``.
 
@@ -97,9 +98,11 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 
 | OCR-Library | Extraction Quality | Speed \[seconds\] | CPU Memory Usage |
 |-------------|--------------------|-------------------|------------------|
-| Docling - Tesseract | Poor (misses text, confuses table entries, doesn't read checkboxes correctly) | CPU: 34<br>MPS: 34 | 3 GB |
-| Docling - EasyOCR | Medium (reads text well, confuses some table entries, doesn't read checkboxes correctly) | CPU: 129<br>MPS: 52 | 11.4 GB |
-| Docling - suryaocr | Very good (reads text well, gets table entries correct, gets most checkboxes correct) | CPU: 369<br>MPS: 379 | 3.7 GB |
-| Docling - RapidOCR | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 161<br>MPS: 160 | 6.4 GB |
-| MinerU | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 160<br>MPS: 50 | 4.3 GB |
+| Docling - Tesseract | Poor (misses text, confuses table entries, doesn't read checkboxes correctly) | CPU: 34<br>MPS: 34<br>GPU: 32 | 3 GB |
+| Docling - EasyOCR | Medium (reads text well, confuses some table entries, doesn't read checkboxes correctly) | CPU: 129<br>MPS: 52<br>GPU: 37 | 11.4 GB |
+| Docling - suryaocr | Very good (reads text well, gets table entries correct, gets most checkboxes correct) | CPU: 369<br>MPS: 337<br>GPU: 31 | 3.7 GB |
+| Docling - RapidOCR | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 161<br>MPS: 160<br>GPU: 12 | 6.4 GB |
+| MinerU | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 160<br>MPS: 50<br>GPU: 42 | 4.3 GB |
 | Document Intelligence | Very good (reads text well, gets table entries correct, gets some checkboxes correct) | 8 | 70 MB (processing happens in cloud) |
+
+\* surya processes each page separately when using Docling.
