@@ -84,13 +84,14 @@ def save_text_to_file(text: str, output_path: Path) -> None:
 
 def _get_rapidocr_config(config: dict[str, Any]) -> RapidOcrOptions:
     """Create RapidOCR configuration with model paths."""
-    base_path = Path(config["modelscope_model_cache_dir"])
+    # base_path = Path(config["modelscope_model_cache_dir"])
     return RapidOcrOptions(
+        backend="torch",
         force_full_page_ocr=config["force_full_page_ocr"],
         lang=config["rapidocr_langs"],
-        det_model_path=str(base_path / config["rapidocr_det_model_rel_path"]),
-        rec_model_path=str(base_path / config["rapidocr_rec_model_rel_path"]),
-        cls_model_path=str(base_path / config["rapidocr_cls_model_rel_path"]),
+        # det_model_path=str(base_path / config["rapidocr_det_model_rel_path"]),
+        # rec_model_path=str(base_path / config["rapidocr_rec_model_rel_path"]),
+        # cls_model_path=str(base_path / config["rapidocr_cls_model_rel_path"]),
     )
 
 
