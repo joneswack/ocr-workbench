@@ -3,7 +3,6 @@
 OCR Workbench is a ready-to-use framework for easily comparing popular OCR libraries in Python. It abstracts away the individual setup and usage details of each library, allowing you to focus on evaluating results on your data rather than spending time implementing each method yourself.
 
 Simply provide a collection of PDF files and compare all libraries using a single script.
-Then select the library that performed best on your data.
 
 Currently, the following libraries are supported:
 - [Docling](https://docling-project.github.io/docling/) including tesseract, EasyOCR, RapidOCR, surya
@@ -47,7 +46,7 @@ brew install tesseract-lang
 
 Additionally, the correct path for the tesseract data directory needs to be set in ``docling_environment/config.json``.
 See [https://tesseract-ocr.github.io/tessdoc/Installation.html](https://tesseract-ocr.github.io/tessdoc/Installation.html) for an explanation.
-If you do not wish to use tesseract, simply remove it from ``ocr_engines``.
+If you do not wish to use tesseract, simply remove it from ``ocr_engines`` in ``docling_environment/config.json``.
 
 ## Running experiments
 
@@ -81,7 +80,7 @@ For almost every environment, there exists an additional ``config.json`` file wi
 
 ## Evaluation on a few sample documents
 
-Using our script, we produced OCR outputs for four example documents and compared them in terms of OCR quality as well as OCR resource consumption.
+Using our script, we produced OCR outputs for four example documents and compared them in terms of OCR quality as well as resource consumption.
 
 The following publicly available PDFs were used and saved in ``data/input``:
 - [Information About Coca-Cola Volume Growth](https://www.industrydocuments.ucsf.edu/all-industries/documents/viewer/?iid=lxpj0226&id=lxpj0226&q=%5Bobject+Object%5D&db-set=documents&sort=&pg=1&npp=20&industry=all-industries&rtool=download)
