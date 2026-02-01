@@ -106,6 +106,18 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 | MinerU | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 160<br>MPS: 50<br>GPU: 42 | 4.3 GB |
 | Document Intelligence | Very good (reads text well, gets table entries correct, gets some checkboxes correct) | 8 | 70 MB (processing happens in cloud) |
 
+### NIST Handwriting Sample
+
+| OCR-Library | Extraction Quality | Speed \[seconds\] | CPU Memory Usage |
+|-------------|--------------------|-------------------|------------------|
+| Docling - Tesseract | Poor (mistakes most text for images) | CPU: 3<br>MPS: 4<br>GPU: X | 1.4 GB |
+| Docling - EasyOCR | Poor (mistakes most text for images) | CPU: 12<br>MPS: 6<br>GPU: X | 11.2 GB |
+| Docling - RapidOCR | Poor (mistakes most text for images) | CPU: 18<br>MPS: 16<br>GPU: X | 2.9 GB |
+| Docling - suryaocr | Poor (mistakes most text for images) | CPU: 48<br>MPS: 46<br>GPU: X | 1.8 GB |
+| marker | Poor (mistakes half of the form for image, reads out remaining text well) | CPU: 31<br>MPS: 39<br>GPU: X | 7.8 GB |
+| MinerU | Poor (misses text and makes mistakes, does not align captions with content well) | CPU: 25<br>MPS: 16<br>GPU: X | 4.6 GB |
+| Document Intelligence | Good (reads all handwriting and text well, does not align captions with contents well) | 5 | 46 MB (processing happens in cloud) |
+
 ### World Food Bank 2020 Annual Report
 
 | OCR-Library | Extraction Quality | Speed \[seconds\] | CPU Memory Usage |
