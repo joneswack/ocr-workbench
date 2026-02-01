@@ -105,3 +105,15 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 | marker | Good (reads text well, confuses some table entries, gets most checkboxes correct) | CPU: 229<br>MPS: 212<br>GPU: X | 11.8 GB |
 | MinerU | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 160<br>MPS: 50<br>GPU: 42 | 4.3 GB |
 | Document Intelligence | Very good (reads text well, gets table entries correct, gets some checkboxes correct) | 8 | 70 MB (processing happens in cloud) |
+
+### World Food Bank 2020 Annual Report
+
+| OCR-Library | Extraction Quality | Speed \[seconds\] | CPU Memory Usage |
+|-------------|--------------------|-------------------|------------------|
+| Docling - Tesseract | Poor (reads text well, mistakes table of content for image, gets double column layout mostly correct, mistakes tables for images) | CPU: 30<br>MPS: 29<br>GPU: X | 8 GB GB |
+| Docling - EasyOCR | Medium (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables mostly correct) | CPU: 166<br>MPS: 54<br>GPU: X | 13 GB |
+| Docling - RapidOCR | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 227<br>MPS: 200<br>GPU: X | 6.5 GB |
+| Docling - suryaocr | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 370<br>MPS: 358<br>GPU: X | 7.8 GB |
+| marker | Good (reads text well, misses page numbers in table of contents, gets double column layout mostly correct, gets table entries correct) | CPU: 193<br>MPS: 168<br>GPU: X | 11.2 GB |
+| MinerU | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 263<br>MPS: 130<br>GPU: X | 4.4 GB |
+| Document Intelligence | Very good (reads text well, gets table of contents correct, gets double column layout mostly correct, gets table entries correct) | 14 | 64 MB (processing happens in cloud) |
