@@ -110,7 +110,7 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 
 | OCR-Library | Extraction Quality | Speed \[seconds\] | CPU Memory Usage |
 |-------------|--------------------|-------------------|------------------|
-| Docling - Tesseract | Poor (reads text well, mistakes table of content for image, gets double column layout mostly correct, mistakes tables for images) | CPU: 30<br>MPS: 29<br>GPU: X | 8 GB GB |
+| Docling - Tesseract | Poor (reads text well, mistakes table of content for image, gets double column layout mostly correct, mistakes tables for images) | CPU: 30<br>MPS: 29<br>GPU: X | 8 GB |
 | Docling - EasyOCR | Medium (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables mostly correct) | CPU: 166<br>MPS: 54<br>GPU: X | 13 GB |
 | Docling - RapidOCR | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 227<br>MPS: 200<br>GPU: X | 6.5 GB |
 | Docling - suryaocr | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 370<br>MPS: 358<br>GPU: X | 7.8 GB |
