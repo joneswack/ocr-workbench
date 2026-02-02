@@ -117,52 +117,52 @@ OCR quality is subjectively graded and compared based on the markdown output sto
   <tbody>
     <tr>
       <td>Docling - Tesseract</td>
-      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (32s)</code></td>
-      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (10s)</code></td>
-      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (50s)</code></td>
-      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (101s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#f03c15;"></span> <code>Poor (32s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#f03c15;"></span> <code>Poor (10s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#f03c15;"></span> <code>Poor (50s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#57b4f7;"></span> <code>Good (101s)</code></td>
     </tr>
     <tr>
       <td>Docling - EasyOCR</td>
-      <td><img src="https://via.placeholder.com/15/ffa500/000000?text=+" alt="#ffa500"> <code>Medium (37s)</code></td>
-      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (7s)</code></td>
-      <td><img src="https://via.placeholder.com/15/ffa500/000000?text=+" alt="#ffa500"> <code>Medium (41s)</code></td>
-      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (95s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#ffa500;"></span> <code>Medium (37s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#f03c15;"></span> <code>Poor (7s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#ffa500;"></span> <code>Medium (41s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#2eb82e;"></span> <code>Very good (95s)</code></td>
     </tr>
     <tr>
       <td>Docling - RapidOCR</td>
-      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (12s)</code></td>
-      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (4s)</code></td>
-      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (28s)</code></td>
-      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (52s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#57b4f7;"></span> <code>Good (12s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#f03c15;"></span> <code>Poor (4s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#57b4f7;"></span> <code>Good (28s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#2eb82e;"></span> <code>Very good (52s)</code></td>
     </tr>
     <tr>
       <td>Docling - suryaocr</td>
-      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (31s)</code></td>
-      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (8s)</code></td>
-      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (49s)</code></td>
-      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (270s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#2eb82e;"></span> <code>Very good (31s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#f03c15;"></span> <code>Poor (8s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#57b4f7;"></span> <code>Good (49s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#2eb82e;"></span> <code>Very good (270s)</code></td>
     </tr>
     <tr>
       <td>marker</td>
-      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (X)</code></td>
-      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (5s)</code></td>
-      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (35s)</code></td>
-      <td><img src="https://via.placeholder.com/15/ffa500/000000?text=+" alt="#ffa500"> <code>Medium (143s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#57b4f7;"></span> <code>Good (X)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#f03c15;"></span> <code>Poor (5s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#57b4f7;"></span> <code>Good (35s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#ffa500;"></span> <code>Medium (143s)</code></td>
     </tr>
     <tr>
       <td>MinerU</td>
-      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (42s)</code></td>
-      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (16s)</code></td>
-      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (60s)</code></td>
-      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (88s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#57b4f7;"></span> <code>Good (42s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#f03c15;"></span> <code>Poor (16s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#57b4f7;"></span> <code>Good (60s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#2eb82e;"></span> <code>Very good (88s)</code></td>
     </tr>
     <tr>
       <td>Document Intelligence</td>
-      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (8s)</code></td>
-      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (5s)</code></td>
-      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (14s)</code></td>
-      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (10s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#2eb82e;"></span> <code>Very good (8s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#57b4f7;"></span> <code>Good (5s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#2eb82e;"></span> <code>Very good (14s)</code></td>
+      <td><span style="display:inline-block;width:15px;height:15px;background-color:#2eb82e;"></span> <code>Very good (10s)</code></td>
     </tr>
   </tbody>
 </table>
