@@ -92,15 +92,16 @@ For almost every environment, there exists an additional ``config.json`` file wi
 
 ### Summary
 
-| OCR-Library | Coca-Cola | NIST Handwriting | World Food Bank | RKI Bulletin |
-|---|---|---|---|---|
-| Docling - Tesseract | ❌ (32s) | ❌ (10s) | ❌ (50s) | 👍 (101s) |
-| Docling - EasyOCR | 🤔 (37s) | ❌ (7s) | 🤔 (41s) | ✅ (95s) |
-| Docling - RapidOCR | 👍 (12s) | ❌ (4s) | 👍 (28s) | ✅ (52s) |
-| Docling - suryaocr | ✅ (31s) | ❌ (8s) | 👍 (49s) | ✅ (270s) |
-| marker | 👍 (X) | ❌ (5s) | 👍 (35s) | 🤔 (143s) |
-| MinerU | 👍 (42s) | ❌ (16s) | 👍 (60s) | ✅ (88s) |
-| Document Intelligence | ✅ (8s) | 👍 (5s) | ✅ (14s) | ✅ (10s) |
+| OCR-Library | Coca-Cola | | NIST Handwriting | | World Food Bank | | RKI Bulletin | |
+|---|---|---|---|---|---|---|---|---|
+| | Quality | Speed | Quality | Speed | Quality | Speed | Quality | Speed |
+| Docling - Tesseract | ❌ | 32s | ❌ | 10s | ❌ | 50s | 👍 | 101s |
+| Docling - EasyOCR | 🤔 | 37s | ❌ | 7s | 🤔 | 41s | ✅ | 95s |
+| Docling - RapidOCR | 👍 | 12s | ❌ | 4s | 👍 | 28s | ✅ | 52s |
+| Docling - suryaocr | ✅ | 31s | ❌ | 8s | 👍 | 49s | ✅ | 270s |
+| marker | 👍 | X | ❌ | 5s | 👍 | 35s | 🤔 | 143s |
+| MinerU | 👍 | 42s | ❌ | 16s | 👍 | 60s | ✅ | 88s |
+| Document Intelligence | ✅ | 8s | 👍 | 5s | ✅ | 14s | ✅ | 10s |
 
 Using our script, we produced OCR outputs for four example documents and compared them in terms of OCR quality as well as resource consumption.
 
