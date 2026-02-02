@@ -54,7 +54,7 @@ If you do not wish to use tesseract, simply remove it from ``ocr_engines`` in ``
 
 **Azure Document Intelligence**
 
-In order to use Azure Document Intelligence, you need to set up an account on Microsoft Azure and create a Document Intelligence resource. Then place the API key `docint_environment/config.json`.
+In order to use Azure Document Intelligence, you need to set up an account on Microsoft Azure and create a [Document Intelligence](https://azure.microsoft.com/en-us/products/ai-foundry/tools/document-intelligence) resource. Then place the API key in `docint_environment/config.json`.
 
 ## Running experiments
 
