@@ -90,15 +90,25 @@ For almost every environment, there exists an additional ``config.json`` file wi
 
 ## Evaluation on a few sample documents
 
+### Summary
+
+| OCR-Library | Coca-Cola | NIST Handwriting | World Food Bank | RKI Bulletin |
+|---|---|---|---|---|
+| Docling - Tesseract | ❌ (32s) | ❌ (10s) | ❌ (50s) | 👍 (101s) |
+| Docling - EasyOCR | 🤔 (37s) | ❌ (7s) | 🤔 (41s) | ✅ (95s) |
+| Docling - RapidOCR | 👍 (12s) | ❌ (4s) | 👍 (28s) | ✅ (52s) |
+| Docling - suryaocr | ✅ (31s) | ❌ (8s) | 👍 (49s) | ✅ (270s) |
+| marker | 👍 (X) | ❌ (5s) | 👍 (35s) | 🤔 (143s) |
+| MinerU | 👍 (42s) | ❌ (16s) | 👍 (60s) | ✅ (88s) |
+| Document Intelligence | ✅ (8s) | 👍 (5s) | ✅ (14s) | ✅ (10s) |
+
 Using our script, we produced OCR outputs for four example documents and compared them in terms of OCR quality as well as resource consumption.
 
 The following publicly available PDFs were used and saved in ``data/input``:
 - [Information About Coca-Cola Volume Growth](https://www.industrydocuments.ucsf.edu/all-industries/documents/viewer/?iid=lxpj0226&id=lxpj0226&q=%5Bobject+Object%5D&db-set=documents&sort=&pg=1&npp=20&industry=all-industries&rtool=download)
-- [Handwriting Sample from NIST Special Database 19](https://www.nist.gov/srd/nist-special-database-19)*
+- [Handwriting Sample from NIST Special Database 19](https://www.nist.gov/srd/nist-special-database-19) (the sample image was saved as a PDF file)
 - [2020 Annual Report Midwest Food Bank](https://midwestfoodbank.org/images/AR_2020_WEB2.pdf)
 - [RKI: Epidemiologisches Bulletin](https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2025/50_25.pdf?__blob=publicationFile&v=8) (German)
-
-\* the sample image was saved as a PDF file.
 
 Speed is measured on a Macbook Air M4 for CPU and MPS, and on an NVIDIA RTX 5090 GPU (32 GB VRAM).
 Memory usage is measured only once for CPU.
