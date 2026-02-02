@@ -10,7 +10,7 @@ Currently, the following libraries are supported:
 - [Marker](https://github.com/datalab-to/marker)
 - [Azure Document Intelligence](https://azure.microsoft.com/en-us/products/ai-foundry/tools/document-intelligence)
 
-Features:
+**Features**
 - Running experiments with the above libraries via a single script
 - Automatic conversion of all provided PDF files in ``data/input`` into markdown using all methods
 - Hardware acceleration using CPU, MPS and CUDA
@@ -22,7 +22,9 @@ Scanned documents are essentially collections of images stored in PDF format. Wh
 
 **Aren't VLMs much better than OCR engines?**
 
-Vision-Language Models (VLMs) can read text in images and even understand image semantics, but their outputs are inherently non-deterministic. This lack of reproducibility—along with the risk of hallucinated or missing text output—often makes them unsuitable for production and regulated environments. As of today, OCR engines are still dominantly used in these scenarios. Therefore, this repository focuses on OCR methods only. Since there is a lot of attention going into the development of VLMs for OCR these days, we may add a comparison for them in the future.
+While Vision-Language Models (VLMs) excel at reading text from images and understanding visual context, they produce non-deterministic outputs. This unpredictability, combined with potential text hallucinations or omissions, makes them less suitable for production systems and regulated industries. Traditional OCR engines remain the preferred choice in these scenarios due to their reliability and reproducibility.
+
+Although VLMs for OCR are rapidly evolving and attracting significant research attention, this repository currently focuses exclusively on traditional OCR methods. We may incorporate VLM comparisons in future releases.
 
 ## Installation
 
@@ -34,6 +36,8 @@ cd <environment-name>
 uv sync
 ```
 where ``<environment-name>`` is one of ``docling_environment``, ``marker_environment``, ``mineru_environment``, ``azure_environment``.
+
+**Docling with tesseract**
 
 If you want to run docling with tesseract, tesseract needs to be installed:
 ```console
@@ -47,6 +51,10 @@ brew install tesseract-lang
 Additionally, the correct path for the tesseract data directory needs to be set in ``docling_environment/config.json``.
 See [https://tesseract-ocr.github.io/tessdoc/Installation.html](https://tesseract-ocr.github.io/tessdoc/Installation.html) for an explanation.
 If you do not wish to use tesseract, simply remove it from ``ocr_engines`` in ``docling_environment/config.json``.
+
+**Azure Document Intelligence**
+
+In order to use Azure Document Intelligence, you need to set up an account on Microsoft Azure and create a Document Intelligence resource. Then place the API key `docint_environment/config.json`.
 
 ## Running experiments
 
@@ -76,7 +84,7 @@ source <environment>/.venv/bin/activate
 mprof plot data/output/<ocr-method>/<file-name>_mem_cpu.dat
 ```
 
-For almost every environment, there exists an additional ``config.json`` file with some preconfigured defaults. You can change it based on your needs. In particular, document intelligence requires an API key.
+For almost every environment, there exists an additional ``config.json`` file with some preconfigured defaults. You can change it based on your needs.
 
 ## Evaluation on a few sample documents
 
