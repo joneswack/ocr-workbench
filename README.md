@@ -117,52 +117,52 @@ OCR quality is subjectively graded and compared based on the markdown output sto
   <tbody>
     <tr>
       <td>Docling - Tesseract</td>
-      <td bgcolor="#f03c15"><code>Poor (32s)</code></td>
-      <td bgcolor="#f03c15"><code>Poor (10s)</code></td>
-      <td bgcolor="#f03c15"><code>Poor (50s)</code></td>
-      <td bgcolor="#57b4f7"><code>Good (101s)</code></td>
+      <td>🔴 Poor (32s)</td>
+      <td>🔴 Poor (10s)</td>
+      <td>🔴 Poor (50s)</td>
+      <td>🟢 Good (101s)</td>
     </tr>
     <tr>
       <td>Docling - EasyOCR</td>
-      <td bgcolor="#ffa500"><code>Medium (37s)</code></td>
-      <td bgcolor="#f03c15"><code>Poor (7s)</code></td>
-      <td bgcolor="#ffa500"><code>Medium (41s)</code></td>
-      <td bgcolor="#2eb82e"><code>Very good (95s)</code></td>
+      <td>🟡 Medium (37s)</td>
+      <td>🔴 Poor (7s)</td>
+      <td>🟡 Medium (41s)</td>
+      <td>🟢 Very good (95s)</td>
     </tr>
     <tr>
       <td>Docling - RapidOCR</td>
-      <td bgcolor="#57b4f7"><code>Good (12s)</code></td>
-      <td bgcolor="#f03c15"><code>Poor (4s)</code></td>
-      <td bgcolor="#57b4f7"><code>Good (28s)</code></td>
-      <td bgcolor="#2eb82e"><code>Very good (52s)</code></td>
+      <td>🟢 Good (12s)</td>
+      <td>🔴 Poor (4s)</td>
+      <td>🟢 Good (28s)</td>
+      <td>🟢 Very good (52s)</td>
     </tr>
     <tr>
       <td>Docling - suryaocr</td>
-      <td bgcolor="#2eb82e"><code>Very good (31s)</code></td>
-      <td bgcolor="#f03c15"><code>Poor (8s)</code></td>
-      <td bgcolor="#57b4f7"><code>Good (49s)</code></td>
-      <td bgcolor="#2eb82e"><code>Very good (270s)</code></td>
+      <td>🟢 Very good (31s)</td>
+      <td>🔴 Poor (8s)</td>
+      <td>🟢 Good (49s)</td>
+      <td>🟢 Very good (270s)</td>
     </tr>
     <tr>
       <td>marker</td>
-      <td bgcolor="#57b4f7"><code>Good (X)</code></td>
-      <td bgcolor="#f03c15"><code>Poor (5s)</code></td>
-      <td bgcolor="#57b4f7"><code>Good (35s)</code></td>
-      <td bgcolor="#ffa500"><code>Medium (143s)</code></td>
+      <td>🟢 Good (X)</td>
+      <td>🔴 Poor (5s)</td>
+      <td>🟢 Good (35s)</td>
+      <td>🟡 Medium (143s)</td>
     </tr>
     <tr>
       <td>MinerU</td>
-      <td bgcolor="#57b4f7"><code>Good (42s)</code></td>
-      <td bgcolor="#f03c15"><code>Poor (16s)</code></td>
-      <td bgcolor="#57b4f7"><code>Good (60s)</code></td>
-      <td bgcolor="#2eb82e"><code>Very good (88s)</code></td>
+      <td>🟢 Good (42s)</td>
+      <td>🔴 Poor (16s)</td>
+      <td>🟢 Good (60s)</td>
+      <td>🟢 Very good (88s)</td>
     </tr>
     <tr>
       <td>Document Intelligence</td>
-      <td bgcolor="#2eb82e"><code>Very good (8s)</code></td>
-      <td bgcolor="#57b4f7"><code>Good (5s)</code></td>
-      <td bgcolor="#2eb82e"><code>Very good (14s)</code></td>
-      <td bgcolor="#2eb82e"><code>Very good (10s)</code></td>
+      <td>🟢 Very good (8s)</td>
+      <td>🟢 Good (5s)</td>
+      <td>🟢 Very good (14s)</td>
+      <td>🟢 Very good (10s)</td>
     </tr>
   </tbody>
 </table>
