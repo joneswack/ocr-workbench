@@ -169,6 +169,10 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
   </tbody>
 </table>
 
+We can see that the proprietary Azure Document Intelligence yields the best results, both in extraction quality and speed, at least when compared against an NVIDIA RTX 5090 GPU.
+
+However, depending on the type of PDF, open source alternatives can yield similar performance. Especially when extraction speed does not matter as much (e.g., in offline computation settings), they can be a much cheaper alternative.
+
 The remainder shows a more detailed comparison for each PDF.
 
 ### Information About Coca-Cola Volume Growth
