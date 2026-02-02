@@ -104,6 +104,8 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 
 ### Summary
 
+The following table summarizes the comparison of all methods on all PDFs. Extraction quality (Very good, Good, Medium, Poor) and GPU extraction speed in seconds are shown.
+
 <table>
   <thead>
     <tr>
@@ -145,7 +147,7 @@ OCR quality is subjectively graded and compared based on the markdown output sto
     </tr>
     <tr>
       <td>marker</td>
-      <td>🟢 Good (X)</td>
+      <td>🟢 Good (29)</td>
       <td>🔴 Poor (5s)</td>
       <td>🟢 Good (35s)</td>
       <td>🟡 Medium (143s)</td>
@@ -175,7 +177,7 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 | Docling - EasyOCR | Medium (reads text well, confuses some table entries, doesn't read checkboxes correctly) | CPU: 129<br>MPS: 52<br>GPU: 37 | 11.4 GB |
 | Docling - RapidOCR | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 161<br>MPS: 160<br>GPU: 12 | 6.4 GB |
 | Docling - suryaocr | Very good (reads text well, gets table entries correct, gets most checkboxes correct) | CPU: 369<br>MPS: 337<br>GPU: 31 | 3.7 GB |
-| marker | Good (reads text well, confuses some table entries, gets most checkboxes correct) | CPU: 229<br>MPS: 212<br>GPU: X | 11.8 GB |
+| marker | Good (reads text well, confuses some table entries, gets most checkboxes correct) | CPU: 229<br>MPS: 212<br>GPU: 29 | 11.8 GB |
 | MinerU | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 160<br>MPS: 50<br>GPU: 42 | 4.3 GB |
 | Document Intelligence | Very good (reads text well, gets table entries correct, gets some checkboxes correct) | 8 | 70 MB (processing happens in cloud) |
 
