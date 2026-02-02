@@ -169,7 +169,7 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
   </tbody>
 </table>
 
-We can see that the proprietary Azure Document Intelligence yields the best results, both in extraction quality and speed, at least when compared against an NVIDIA RTX 5090 GPU.
+We can see that the proprietary Azure Document Intelligence yields the best results, both in extraction quality and speed, at least when compared against an NVIDIA RTX 5090 GPU. RapidOCR was the fastest open source alternative in our experiments.
 
 However, depending on the type of PDF, open source alternatives can yield similar performance. Especially when extraction speed does not matter as much (e.g., in offline computation settings), they can be a much cheaper alternative. Moreover, faster GPUs like an H200 or B200 could be used to catch up with Document Intelligence speed. In practice, we recommend running the experiments on your data domain to make a final choice.
 
