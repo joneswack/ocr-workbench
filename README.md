@@ -10,6 +10,8 @@ Currently, the following libraries are supported:
 - [Marker](https://github.com/datalab-to/marker)
 - [Azure Document Intelligence](https://azure.microsoft.com/en-us/products/ai-foundry/tools/document-intelligence)
 
+This selection focuses on benchmarking open source libraries against proprietary Azure Document Intelligence.
+
 **Features**
 - Running experiments with the above libraries via a single script
 - Automatic conversion of all provided PDF files in ``data/input`` into markdown using all methods
@@ -63,7 +65,7 @@ Place some PDF files to be parsed in ``data/input``.
 Then run:
 
 ```console
-sh run_ocr_experiments.sh -a <accelerator> -e <environment>
+bash run_ocr_experiments.sh -a <accelerator> -e <environment>
 ```
 
 where ``<accelerator>`` is one of ``cpu``, ``mps``, ``cuda`` and ``<environment>`` is one of ``docling``, ``marker``, ``mineru``, ``docint``.
@@ -73,7 +75,7 @@ By default, the script processes all PDF files in ``data/input``.
 If you want to run a single experiment instead, run the following:
 
 ```console
-sh run_ocr_experiments.sh -i <input-file> -a <accelerator> -e <environment>
+bash run_ocr_experiments.sh -i <input-file> -a <accelerator> -e <environment>
 ```
 
 The markdown output is stored in ``data/output/<ocr-method>/<file-name>.md``.
@@ -118,34 +120,34 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 
 | OCR-Library | Extraction Quality | Speed \[seconds\] | CPU Memory Usage |
 |-------------|--------------------|-------------------|------------------|
-| Docling - Tesseract | Poor (mistakes most text for images) | CPU: 3<br>MPS: 4<br>GPU: X | 1.4 GB |
-| Docling - EasyOCR | Poor (mistakes most text for images) | CPU: 12<br>MPS: 6<br>GPU: X | 11.2 GB |
-| Docling - RapidOCR | Poor (mistakes most text for images) | CPU: 18<br>MPS: 16<br>GPU: X | 2.9 GB |
-| Docling - suryaocr | Poor (mistakes most text for images) | CPU: 48<br>MPS: 46<br>GPU: X | 1.8 GB |
-| marker | Poor (mistakes half of the form for image, reads out remaining text well) | CPU: 31<br>MPS: 39<br>GPU: X | 7.8 GB |
-| MinerU | Poor (misses text and makes mistakes, does not align captions with content well) | CPU: 25<br>MPS: 16<br>GPU: X | 4.6 GB |
+| Docling - Tesseract | Poor (mistakes most text for images) | CPU: 3<br>MPS: 4<br>GPU: 10 | 1.4 GB |
+| Docling - EasyOCR | Poor (mistakes most text for images) | CPU: 12<br>MPS: 6<br>GPU: 7 | 11.2 GB |
+| Docling - RapidOCR | Poor (mistakes most text for images) | CPU: 18<br>MPS: 16<br>GPU: 4 | 2.9 GB |
+| Docling - suryaocr | Poor (mistakes most text for images) | CPU: 48<br>MPS: 46<br>GPU: 8 | 1.8 GB |
+| marker | Poor (mistakes half of the form for image, reads out remaining text well) | CPU: 31<br>MPS: 39<br>GPU: 5 | 7.8 GB |
+| MinerU | Poor (misses text and makes mistakes, does not align captions with content well) | CPU: 25<br>MPS: 16<br>GPU: 16 | 4.6 GB |
 | Document Intelligence | Good (reads all handwriting and text well, does not align captions with contents well) | 5 | 46 MB (processing happens in cloud) |
 
 ### World Food Bank 2020 Annual Report
 
 | OCR-Library | Extraction Quality | Speed \[seconds\] | CPU Memory Usage |
 |-------------|--------------------|-------------------|------------------|
-| Docling - Tesseract | Poor (reads text well, mistakes table of content for image, gets double column layout mostly correct, mistakes tables for images) | CPU: 30<br>MPS: 29<br>GPU: X | 8 GB |
-| Docling - EasyOCR | Medium (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables mostly correct) | CPU: 166<br>MPS: 54<br>GPU: X | 13 GB |
-| Docling - RapidOCR | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 227<br>MPS: 200<br>GPU: X | 6.5 GB |
-| Docling - suryaocr | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 370<br>MPS: 358<br>GPU: X | 7.8 GB |
-| marker | Good (reads text well, misses page numbers in table of contents, gets double column layout mostly correct, gets table entries correct) | CPU: 193<br>MPS: 168<br>GPU: X | 11.2 GB |
-| MinerU | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 263<br>MPS: 130<br>GPU: X | 4.4 GB |
+| Docling - Tesseract | Poor (reads text well, mistakes table of content for image, gets double column layout mostly correct, mistakes tables for images) | CPU: 30<br>MPS: 29<br>GPU: 50 | 8 GB |
+| Docling - EasyOCR | Medium (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables mostly correct) | CPU: 166<br>MPS: 54<br>GPU: 41 | 13 GB |
+| Docling - RapidOCR | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 227<br>MPS: 200<br>GPU: 28 | 6.5 GB |
+| Docling - suryaocr | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 370<br>MPS: 358<br>GPU: 49 | 7.8 GB |
+| marker | Good (reads text well, misses page numbers in table of contents, gets double column layout mostly correct, gets table entries correct) | CPU: 193<br>MPS: 168<br>GPU: 35 | 11.2 GB |
+| MinerU | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 263<br>MPS: 130<br>GPU: 60 | 4.4 GB |
 | Document Intelligence | Very good (reads text well, gets table of contents correct, gets double column layout mostly correct, gets table entries correct) | 14 | 64 MB (processing happens in cloud) |
 
 ### RKI: Epidemiologisches Bulletin
 
 | OCR-Library | Extraction Quality | Speed \[seconds\] | CPU Memory Usage |
 |-------------|--------------------|-------------------|------------------|
-| Docling - Tesseract | Good (reads text well, gets table of contents correct, does not structure table well) | CPU: 70<br>MPS: 68<br>GPU: X | 7.1 GB |
-| Docling - EasyOCR | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 241<br>MPS: 108<br>GPU: X | 14 GB |
-| Docling - RapidOCR | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 542<br>MPS: 511<br>GPU: X | 6.4 GB |
-| Docling - suryaocr | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 712<br>MPS: 704<br>GPU: X | 8.2 GB |
-| marker | Medium (reads text well, gets table of contents correct, mixes up table entries) | CPU: 479<br>MPS: 617<br>GPU: X | 12.1 GB |
-| MinerU | Very good (reads text well, gets table of contents partially correct, gets table entries correct) | CPU: 544<br>MPS: 156<br>GPU: X | 4.8 GB |
+| Docling - Tesseract | Good (reads text well, gets table of contents correct, does not structure table well) | CPU: 70<br>MPS: 68<br>GPU: 101 | 7.1 GB |
+| Docling - EasyOCR | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 241<br>MPS: 108<br>GPU: 95 | 14 GB |
+| Docling - RapidOCR | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 542<br>MPS: 511<br>GPU: 52 | 6.4 GB |
+| Docling - suryaocr | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 712<br>MPS: 704<br>GPU: 270 | 8.2 GB |
+| marker | Medium (reads text well, gets table of contents correct, mixes up table entries) | CPU: 479<br>MPS: 617<br>GPU: 143 | 12.1 GB |
+| MinerU | Very good (reads text well, gets table of contents partially correct, gets table entries correct) | CPU: 544<br>MPS: 156<br>GPU: 88 | 4.8 GB |
 | Document Intelligence | Very good (reads text well, gets table of contents correct, gets table entries correct) | 10 | 96 MB (processing happens in cloud) |

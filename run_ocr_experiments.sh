@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Global script to run experiments for different environments
 # Usage: ./run_all_experiments.sh -e <environment> [-a <accelerator-device>] [-i <pdf-path>]
