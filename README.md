@@ -134,10 +134,10 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 
 | OCR-Library | Extraction Quality | Speed \[seconds\] | CPU Memory Usage |
 |-------------|--------------------|-------------------|------------------|
-| Docling - Tesseract | Good (reads text well, gets table of contents correct, does not structure table well) | CPU: 70<br>MPS: X<br>GPU: X | 7.1 GB |
-| Docling - EasyOCR | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 241<br>MPS: X<br>GPU: X | 14 GB |
-| Docling - RapidOCR | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 542<br>MPS: X<br>GPU: X | 6.4 GB |
-| Docling - suryaocr | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 712<br>MPS: X<br>GPU: X | 8.2 GB |
+| Docling - Tesseract | Good (reads text well, gets table of contents correct, does not structure table well) | CPU: 70<br>MPS: 68<br>GPU: X | 7.1 GB |
+| Docling - EasyOCR | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 241<br>MPS: 108<br>GPU: X | 14 GB |
+| Docling - RapidOCR | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 542<br>MPS: 511<br>GPU: X | 6.4 GB |
+| Docling - suryaocr | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 712<br>MPS: 704<br>GPU: X | 8.2 GB |
 | marker | Medium (reads text well, gets table of contents correct, mixes up table entries) | CPU: 479<br>MPS: 617<br>GPU: X | 12.1 GB |
 | MinerU | Very good (reads text well, gets table of contents partially correct, gets table entries correct) | CPU: 544<br>MPS: 156<br>GPU: X | 4.8 GB |
 | Document Intelligence | Very good (reads text well, gets table of contents correct, gets table entries correct) | 10 | 96 MB (processing happens in cloud) |
