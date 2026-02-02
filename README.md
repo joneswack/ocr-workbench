@@ -104,15 +104,68 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 
 ### Summary
 
-| OCR-Library | Coca-Cola | NIST Handwriting | World Food Bank | RKI Bulletin |
-|---|---|---|---|---|
-| Docling - Tesseract | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (32s)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (10s)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (50s)` | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (101s)` |
-| Docling - EasyOCR | ![#ffa500](https://via.placeholder.com/15/ffa500/000000?text=+) `Medium (37s)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (7s)` | ![#ffa500](https://via.placeholder.com/15/ffa500/000000?text=+) `Medium (41s)` | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (95s)` |
-| Docling - RapidOCR | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (12s)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (4s)` | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (28s)` | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (52s)` |
-| Docling - suryaocr | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (31s)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (8s)` | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (49s)` | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (270s)` |
-| marker | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (X)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (5s)` | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (35s)` | ![#ffa500](https://via.placeholder.com/15/ffa500/000000?text=+) `Medium (143s)` |
-| MinerU | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (42s)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (16s)` | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (60s)` | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (88s)` |
-| Document Intelligence | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (8s)` | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (5s)` | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (14s)` | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (10s)` |
+<table>
+  <thead>
+    <tr>
+      <th>OCR-Library</th>
+      <th>Coca-Cola</th>
+      <th>NIST Handwriting</th>
+      <th>World Food Bank</th>
+      <th>RKI Bulletin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Docling - Tesseract</td>
+      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (32s)</code></td>
+      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (10s)</code></td>
+      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (50s)</code></td>
+      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (101s)</code></td>
+    </tr>
+    <tr>
+      <td>Docling - EasyOCR</td>
+      <td><img src="https://via.placeholder.com/15/ffa500/000000?text=+" alt="#ffa500"> <code>Medium (37s)</code></td>
+      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (7s)</code></td>
+      <td><img src="https://via.placeholder.com/15/ffa500/000000?text=+" alt="#ffa500"> <code>Medium (41s)</code></td>
+      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (95s)</code></td>
+    </tr>
+    <tr>
+      <td>Docling - RapidOCR</td>
+      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (12s)</code></td>
+      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (4s)</code></td>
+      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (28s)</code></td>
+      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (52s)</code></td>
+    </tr>
+    <tr>
+      <td>Docling - suryaocr</td>
+      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (31s)</code></td>
+      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (8s)</code></td>
+      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (49s)</code></td>
+      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (270s)</code></td>
+    </tr>
+    <tr>
+      <td>marker</td>
+      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (X)</code></td>
+      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (5s)</code></td>
+      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (35s)</code></td>
+      <td><img src="https://via.placeholder.com/15/ffa500/000000?text=+" alt="#ffa500"> <code>Medium (143s)</code></td>
+    </tr>
+    <tr>
+      <td>MinerU</td>
+      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (42s)</code></td>
+      <td><img src="https://via.placeholder.com/15/f03c15/000000?text=+" alt="#f03c15"> <code>Poor (16s)</code></td>
+      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (60s)</code></td>
+      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (88s)</code></td>
+    </tr>
+    <tr>
+      <td>Document Intelligence</td>
+      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (8s)</code></td>
+      <td><img src="https://via.placeholder.com/15/57b4f7/000000?text=+" alt="#57b4f7"> <code>Good (5s)</code></td>
+      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (14s)</code></td>
+      <td><img src="https://via.placeholder.com/15/2eb82e/000000?text=+" alt="#2eb82e"> <code>Very good (10s)</code></td>
+    </tr>
+  </tbody>
+</table>
 
 ### Information About Coca-Cola Volume Growth
 
