@@ -90,19 +90,6 @@ For almost every environment, there exists an additional ``config.json`` file wi
 
 ## Evaluation on a few sample documents
 
-### Summary
-
-| OCR-Library | Coca-Cola | | NIST Handwriting | | World Food Bank | | RKI Bulletin | |
-|---|---|---|---|---|---|---|---|---|
-| | Quality | Speed | Quality | Speed | Quality | Speed | Quality | Speed |
-| Docling - Tesseract | ❌ | 32s | ❌ | 10s | ❌ | 50s | 👍 | 101s |
-| Docling - EasyOCR | 🤔 | 37s | ❌ | 7s | 🤔 | 41s | ✅ | 95s |
-| Docling - RapidOCR | 👍 | 12s | ❌ | 4s | 👍 | 28s | ✅ | 52s |
-| Docling - suryaocr | ✅ | 31s | ❌ | 8s | 👍 | 49s | ✅ | 270s |
-| marker | 👍 | X | ❌ | 5s | 👍 | 35s | 🤔 | 143s |
-| MinerU | 👍 | 42s | ❌ | 16s | 👍 | 60s | ✅ | 88s |
-| Document Intelligence | ✅ | 8s | 👍 | 5s | ✅ | 14s | ✅ | 10s |
-
 Using our script, we produced OCR outputs for four example documents and compared them in terms of OCR quality as well as resource consumption.
 
 The following publicly available PDFs were used and saved in ``data/input``:
@@ -114,6 +101,18 @@ The following publicly available PDFs were used and saved in ``data/input``:
 Speed is measured on a Macbook Air M4 for CPU and MPS, and on an NVIDIA RTX 5090 GPU (32 GB VRAM).
 Memory usage is measured only once for CPU.
 OCR quality is subjectively graded and compared based on the markdown output stored in ``data/output/<ocr-method>/<file-name>.md``.
+
+### Summary
+
+| OCR-Library | Coca-Cola | NIST Handwriting | World Food Bank | RKI Bulletin |
+|---|---|---|---|---|
+| Docling - Tesseract | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (32s)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (10s)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (50s)` | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (101s)` |
+| Docling - EasyOCR | ![#ffa500](https://via.placeholder.com/15/ffa500/000000?text=+) `Medium (37s)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (7s)` | ![#ffa500](https://via.placeholder.com/15/ffa500/000000?text=+) `Medium (41s)` | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (95s)` |
+| Docling - RapidOCR | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (12s)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (4s)` | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (28s)` | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (52s)` |
+| Docling - suryaocr | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (31s)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (8s)` | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (49s)` | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (270s)` |
+| marker | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (X)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (5s)` | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (35s)` | ![#ffa500](https://via.placeholder.com/15/ffa500/000000?text=+) `Medium (143s)` |
+| MinerU | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (42s)` | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Poor (16s)` | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (60s)` | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (88s)` |
+| Document Intelligence | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (8s)` | ![#57b4f7](https://via.placeholder.com/15/57b4f7/000000?text=+) `Good (5s)` | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (14s)` | ![#2eb82e](https://via.placeholder.com/15/2eb82e/000000?text=+) `Very good (10s)` |
 
 ### Information About Coca-Cola Volume Growth
 
