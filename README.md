@@ -169,6 +169,8 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
   </tbody>
 </table>
 
+The remainder shows a more detailed comparison for each PDF.
+
 ### Information About Coca-Cola Volume Growth
 
 | OCR-Library | Extraction Quality | Speed \[seconds\] | CPU Memory Usage |
