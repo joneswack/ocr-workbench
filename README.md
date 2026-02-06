@@ -131,7 +131,7 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
       <td>🟡 Medium (37s)</td>
       <td>🔴 Poor (7s)</td>
       <td>🟡 Medium (41s)</td>
-      <td>🟢 Very good (95s)</td>
+      <td>🟢 <strong>Very good</strong> (95s)</td>
       <td>0.11 ct</td>
     </tr>
     <tr>
@@ -139,15 +139,15 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
       <td>🟢 Good (12s)</td>
       <td>🔴 Poor (4s)</td>
       <td>🟢 Good (28s)</td>
-      <td>🟢 Very good (52s)</td>
-      <td>0.06 ct</td>
+      <td>🟢 <strong>Very good</strong> (52s)</td>
+      <td><strong>0.06 ct</strong></td>
     </tr>
     <tr>
       <td>Docling - suryaocr</td>
-      <td>🟢 Very good (31s)</td>
+      <td>🟢 <strong>Very good</strong> (31s)</td>
       <td>🔴 Poor (8s)</td>
       <td>🟢 Good (49s)</td>
-      <td>🟢 Very good (270s)</td>
+      <td>🟢 <strong>Very good</strong> (270s)</td>
       <td>0.17 ct</td>
     </tr>
     <tr>
@@ -163,15 +163,15 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
       <td>🟢 Good (42s)</td>
       <td>🔴 Poor (16s)</td>
       <td>🟢 Good (60s)</td>
-      <td>🟢 Very good (88s)</td>
+      <td>🟢 <strong>Very good</strong> (88s)</td>
       <td>0.17 ct</th>
     </tr>
     <tr>
       <td>Document Intelligence</td>
-      <td>🟢 Very good (8s)</td>
+      <td>🟢 <strong>Very good</strong> (8s)</td>
       <td>🟢 Good (5s)</td>
-      <td>🟢 Very good (14s)</td>
-      <td>🟢 Very good (10s)</td>
+      <td>🟢 <strong>Very good</strong> (14s)</td>
+      <td>🟢 <strong>Very good</strong> (10s)</td>
       <td>1 ct</td>
     </tr>
   </tbody>
