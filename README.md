@@ -176,7 +176,7 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
       <td>🟢 Very good (8s)</td>
       <td>🟢 Good (5s)</td>
       <td>🟢 Very good (14s)</td>
-      <td>🟢 <strong>Excellent</strong> (10s)</td>
+      <td>🏆 <strong>Excellent</strong> (10s)</td>
       <td>1 ct</td>
     </tr>
     <tr>
