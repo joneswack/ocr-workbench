@@ -104,7 +104,7 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 
 ### Summary
 
-The following table summarizes the comparison of all methods on all PDFs. Extraction quality (Very good, Good, Medium, Poor) and GPU extraction speed in seconds are shown, as well as cost per page when running on an NVIDIA RTX 5090 GPU.
+The following table summarizes the comparison of all methods on all PDFs. Extraction quality (Very good, Good, Medium, Poor) and GPU extraction speed in seconds are shown, as well as cost per page when running on an NVIDIA RTX 5090 GPU hosted on [runpod.io](https://www.runpod.io/) for 89ct/hour.
 
 <table>
   <thead>
