@@ -236,7 +236,7 @@ The remainder shows a more detailed comparison for each PDF.
 | marker | Good (reads text well, misses page numbers in table of contents, gets double column layout mostly correct, gets table entries correct) | CPU: 193<br>MPS: 168<br>GPU: 35 | 11.2 GB |
 | MinerU | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 263<br>MPS: 130<br>GPU: 60 | 4.4 GB |
 | Document Intelligence | Very good (reads text well, gets table of contents correct, gets double column layout mostly correct, gets table entries correct) | 14 | 64 MB (processing happens in cloud) |
-| LightOnOCR-2-1B | Excellent (reads text well, gets table of contents correct, gets double column layout correct, gets table entries correct) | CPU: 2440<br>MPS: x<br>GPU: 191 | 15 GB |
+| LightOnOCR-2-1B | Excellent (reads text well, gets table of contents correct, gets double column layout correct, gets table entries correct) | CPU: 2440<br>MPS: 1881<br>GPU: 191 | 15 GB |
 
 ### RKI: Epidemiologisches Bulletin
 
@@ -250,4 +250,4 @@ The remainder shows a more detailed comparison for each PDF.
 | marker | Medium (reads text well, gets table of contents correct, mixes up table entries) | CPU: 479<br>MPS: 617<br>GPU: 143 | 12.1 GB |
 | MinerU | Very good (reads text well, gets table of contents partially correct, gets table entries correct) | CPU: 544<br>MPS: 156<br>GPU: 88 | 4.8 GB |
 | Document Intelligence | Excellent (reads text well, gets table of contents correct, gets table entries correct) | 10 | 96 MB (processing happens in cloud) |
-| LightOnOCR-2-1B | Excellent (reads text well, gets table of contents correct, gets table entries correct) | CPU: 4187<br>MPS: x<br>GPU: 416 | x GB |
+| LightOnOCR-2-1B | Excellent (reads text well, gets table of contents correct, gets table entries correct) | CPU: 4187<br>MPS: 3987<br>GPU: 416 | 14.9 GB |
