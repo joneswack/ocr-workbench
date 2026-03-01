@@ -148,6 +148,7 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
       <td>0.17 ct</td>
     </tr>
     <tr>
+      <td>Docling - Granite</td>
       <td>🔴 Poor (343s)</td>
       <td>🟡 Medium (108s)</td>
       <td>🔴 Poor (171s)</td>
@@ -221,7 +222,7 @@ The remainder shows a more detailed comparison for each PDF.
 | marker | Poor (mistakes half of the form for image, reads out remaining text well) | CPU: 31<br>MPS: 39<br>GPU: 5 | 7.8 GB |
 | MinerU | Poor (misses text and makes mistakes, does not align captions with content well) | CPU: 25<br>MPS: 16<br>GPU: 16 | 4.6 GB |
 | Document Intelligence | Good (reads all handwriting and text well, does not align captions with contents well) | 5 | 46 MB (processing happens in cloud) |
-| Lighton OCR | Excellent (reads all handwriting and text well, aligns all form contents perfectly) | CPU: 177<br>MPS: 168<br>GPU: 23 | x GB |
+| LightOnOCR-2-1B | Excellent (reads all handwriting and text well, aligns all form contents perfectly) | CPU: 177<br>MPS: 168<br>GPU: 23 | x GB |
 
 ### World Food Bank 2020 Annual Report
 
@@ -235,7 +236,7 @@ The remainder shows a more detailed comparison for each PDF.
 | marker | Good (reads text well, misses page numbers in table of contents, gets double column layout mostly correct, gets table entries correct) | CPU: 193<br>MPS: 168<br>GPU: 35 | 11.2 GB |
 | MinerU | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 263<br>MPS: 130<br>GPU: 60 | 4.4 GB |
 | Document Intelligence | Very good (reads text well, gets table of contents correct, gets double column layout mostly correct, gets table entries correct) | 14 | 64 MB (processing happens in cloud) |
-| Lighton OCR | Excellent (reads text well, gets table of contents correct, gets double column layout correct, gets table entries correct) | CPU: x<br>MPS: x<br>GPU: 191 | x GB |
+| LightOnOCR-2-1B | Excellent (reads text well, gets table of contents correct, gets double column layout correct, gets table entries correct) | CPU: x<br>MPS: x<br>GPU: 191 | x GB |
 
 ### RKI: Epidemiologisches Bulletin
 
@@ -249,4 +250,4 @@ The remainder shows a more detailed comparison for each PDF.
 | marker | Medium (reads text well, gets table of contents correct, mixes up table entries) | CPU: 479<br>MPS: 617<br>GPU: 143 | 12.1 GB |
 | MinerU | Very good (reads text well, gets table of contents partially correct, gets table entries correct) | CPU: 544<br>MPS: 156<br>GPU: 88 | 4.8 GB |
 | Document Intelligence | Excellent (reads text well, gets table of contents correct, gets table entries correct) | 10 | 96 MB (processing happens in cloud) |
-| Lighton OCR | Excellent (reads text well, gets table of contents correct, gets table entries correct) | CPU: x<br>MPS: x<br>GPU: 416 | x GB |
+| LightOnOCR-2-1B | Excellent (reads text well, gets table of contents correct, gets table entries correct) | CPU: x<br>MPS: x<br>GPU: 416 | x GB |
