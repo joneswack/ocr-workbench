@@ -110,7 +110,7 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
       <th>Coca-Cola</th>
       <th>NIST Handwriting</th>
       <th>World Food Bank</th>
-      <th>RKI Bulletin</th>
+      <th>RKI Bulletin (German)</th>
       <th>Cost / page</th>
     </tr>
   </thead>
