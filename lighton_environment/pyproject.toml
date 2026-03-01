@@ -1,0 +1,15 @@
+[project]
+name = "lighton-environment"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=12.1.1",
+    "pypdfium2>=5.4.0",
+    "memory-profiler>=0.61.0",
+    "torch>=2.10.0",
+    "torchvision>=0.25.0",
+    "transformers==5.0.0",
+    "typer>=0.19.2",
+]

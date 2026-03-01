@@ -4,7 +4,7 @@
     "layout_batch_size": 64,
     "table_batch_size": 4,
     "force_full_page_ocr": true,
-    "ocr_engines": ["tesseract", "easyocr", "suryaocr", "rapidocr"],
+    "ocr_engines": ["granite"],
     "tesseract_data_path": "/opt/homebrew/share/tessdata/",
     "tesseract_langs": ["fra", "deu", "spa", "eng"],
     "easyocr_langs": ["fr", "de", "es", "en"],

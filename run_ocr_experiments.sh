@@ -3,7 +3,7 @@
 # Global script to run experiments for different environments
 # Usage: ./run_all_experiments.sh -e <environment> [-a <accelerator-device>] [-i <pdf-path>]
 # Options:
-#   -e <environment>          Environment to run: docling, docint, marker, mineru
+#   -e <environment>          Environment to run: docling, docint, lighton, marker, mineru
 #   -a <accelerator-device>   Accelerator device: cpu, mps, or cuda (default: cpu)
 #   -i <pdf-path>             Specific PDF file to process (default: all PDFs)
 
@@ -36,7 +36,7 @@ done
 # Validate environment
 if [ -z "$ENVIRONMENT" ]; then
     echo "Error: Environment must be specified with -e option."
-    echo "Accepted values: docling, docint, marker, mineru"
+    echo "Accepted values: docling, docint, lighton, marker, mineru"
     exit 1
 fi
 
@@ -112,6 +112,22 @@ case "$ENVIRONMENT" in
         done
         ;;
 
+    lighton)
+        echo "Running lighton experiment..."
+        case "$ACCELERATOR_DEVICE" in
+            cpu|mps|cuda) ;;
+            *) echo "Error: Invalid accelerator device '$ACCELERATOR_DEVICE' for lighton"; exit 1 ;;
+        esac
+        output_dir="../data/output/lighton"
+
+        for input_file in $input_files; do
+            input_file=$(basename "$input_file")
+            profile_file="$output_dir/$(basename "$input_file" .pdf)$PROFILE_SUFFIX"
+            cmd=(run_experiment.py --pdf "../data/input/$input_file" --accelerator-device "$ACCELERATOR_DEVICE" --output-dir "$output_dir")
+            run_experiment "$profile_file" "${cmd[@]}"
+        done
+        ;;
+
     marker)
         echo "Running marker experiment..."
         case "$ACCELERATOR_DEVICE" in
@@ -147,7 +163,7 @@ case "$ENVIRONMENT" in
         ;;
     *)
         echo "Error: Invalid environment '$ENVIRONMENT'"
-        echo "Accepted values: docling, docint, marker, mineru"
+        echo "Accepted values: docling, docint, lighton, marker, mineru"
         cd ..
         exit 1
         ;;

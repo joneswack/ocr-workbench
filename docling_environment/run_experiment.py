@@ -3,7 +3,7 @@ import logging
 import os
 from logging import Logger, getLogger
 from pathlib import Path
-from typing import Annotated, Any, Literal
+from typing import Annotated, Any, Literal, Type
 
 import typer
 from docling.datamodel.accelerator_options import AcceleratorDevice, AcceleratorOptions
@@ -16,8 +16,15 @@ from docling.datamodel.pipeline_options import (
     RapidOcrOptions,
     TesseractOcrOptions,
     ThreadedPdfPipelineOptions,
+    VlmPipelineOptions,
+)
+from docling.datamodel.vlm_model_specs import (
+    GRANITEDOCLING_MLX,
+    GRANITEDOCLING_TRANSFORMERS,
 )
 from docling.document_converter import DocumentConverter, PdfFormatOption
+from docling.pipeline.standard_pdf_pipeline import StandardPdfPipeline
+from docling.pipeline.vlm_pipeline import VlmPipeline
 from docling_surya import SuryaOcrOptions
 
 logger: Logger = getLogger(__name__)
@@ -52,7 +59,7 @@ def convert_document_to_markdown(
     # Set TESSDATA_PREFIX environment variable for Tesseract OCR
     os.environ.setdefault("TESSDATA_PREFIX", config["tesseract_data_path"])
 
-    pipeline_options: PdfPipelineOptions = _get_pdf_pipeline_options(
+    pipeline_cls, pipeline_options = _get_pdf_pipeline_options(
         config=config,
         ocr_method=ocr_method,
         accelerator_device=AcceleratorDevice(accelerator_device),
@@ -60,7 +67,9 @@ def convert_document_to_markdown(
 
     doc_converter = DocumentConverter(
         format_options={
-            InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options)
+            InputFormat.PDF: PdfFormatOption(
+                pipeline_cls=pipeline_cls, pipeline_options=pipeline_options
+            )
         }
     )
 
@@ -109,8 +118,19 @@ def _get_pdf_pipeline_options(
     config: dict[str, Any],
     ocr_method: str,
     accelerator_device: AcceleratorDevice,
-) -> PdfPipelineOptions:
+) -> tuple[Type, PdfPipelineOptions | VlmPipelineOptions]:
     """Create PDF pipeline options with OCR and accelerator configurations."""
+    if ocr_method == "granite":
+        # for granite docling we need a vlm pipeline
+        pipeline_cls = VlmPipeline
+        if accelerator_device == AcceleratorDevice.MPS:
+            vlm_options = GRANITEDOCLING_MLX
+        else:
+            vlm_options = GRANITEDOCLING_TRANSFORMERS
+        pipeline_options = VlmPipelineOptions(vlm_options=vlm_options)
+        return pipeline_cls, pipeline_options
+
+    # in all other cases, we use a standard pdf pipeline
     ocr_options: OcrOptions = _get_ocr_options_map(config)[ocr_method]
     accelerator_options = AcceleratorOptions(
         num_threads=config["num_threads"], device=accelerator_device
@@ -120,7 +140,7 @@ def _get_pdf_pipeline_options(
     if isinstance(ocr_options, SuryaOcrOptions):
         additional_options["ocr_model"] = "suryaocr"
 
-    return ThreadedPdfPipelineOptions(
+    return StandardPdfPipeline, ThreadedPdfPipelineOptions(
         ocr_batch_size=config["ocr_batch_size"],  # default 4
         layout_batch_size=config["layout_batch_size"],  # default 4
         table_batch_size=config["table_batch_size"],  # currently not using GPU batching
@@ -137,7 +157,8 @@ def main(
     input_file: Annotated[Path, typer.Option()],
     output_dir: Annotated[Path, typer.Option()],
     ocr_method: Annotated[
-        Literal["tesseract", "easyocr", "suryaocr", "rapidocr"], typer.Option()
+        Literal["tesseract", "easyocr", "suryaocr", "rapidocr", "granite"],
+        typer.Option(),
     ],
     accelerator_device: Annotated[Literal["cpu", "mps", "cuda"], typer.Option()],
 ) -> None:

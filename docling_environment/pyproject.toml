@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "doclayout-yolo>=0.0.4",
-    "docling>=2.65.0",
+    "docling[vlm]>=2.65.0",
     "docling-surya>=0.1.0",
     "easyocr>=1.7.2",
     "hf-transfer>=0.1.9",
