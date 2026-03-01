@@ -5,10 +5,11 @@ OCR Workbench is a ready-to-use framework for easily comparing popular OCR libra
 Simply provide a collection of PDF files and compare all libraries using a single script.
 
 Currently, the following libraries are supported:
-- [Docling](https://docling-project.github.io/docling/) including tesseract, EasyOCR, RapidOCR, surya
+- [Docling](https://docling-project.github.io/docling/) including tesseract, EasyOCR, RapidOCR, surya, Granite
 - [MinerU](https://opendatalab.github.io/MinerU/)
 - [Marker](https://github.com/datalab-to/marker)
 - [Azure Document Intelligence](https://azure.microsoft.com/en-us/products/ai-foundry/tools/document-intelligence)
+- [LightOnOCR-2-1B](https://huggingface.co/lightonai/LightOnOCR-2-1B)
 
 This selection focuses on benchmarking open source libraries against proprietary Azure Document Intelligence.
 
@@ -22,11 +23,7 @@ This selection focuses on benchmarking open source libraries against proprietary
 
 Scanned documents are essentially collections of images stored in PDF format. While easy to view and share, their text content is not machine-readable by default. Extracting this text requires specialized machine learning techniques. Optical Character Recognition (OCR) converts text in images into structured, machine-readable data that can be reliably used for tasks such as document search, analysis, and automated processing.
 
-**Aren't VLMs much better than OCR engines?**
-
-While Vision-Language Models (VLMs) excel at reading text from images and understanding visual context, they produce non-deterministic outputs. This unpredictability, combined with potential text hallucinations or omissions, makes them less suitable for production systems and regulated industries. Traditional OCR engines remain the preferred choice in these scenarios due to their reliability and reproducibility.
-
-Although VLMs for OCR are rapidly evolving and attracting significant research attention, this repository currently focuses exclusively on traditional OCR methods. We may incorporate VLM comparisons in future releases.
+In this repository, we compare open source OCR engines against proprietary ones. We also include VLM based approaches.
 
 ## Installation
 
@@ -37,7 +34,7 @@ Set up the respective environment using:
 cd <environment-name>
 uv sync
 ```
-where ``<environment-name>`` is one of ``docling_environment``, ``marker_environment``, ``mineru_environment``, ``azure_environment``.
+where ``<environment-name>`` is one of ``docling_environment``, ``marker_environment``, ``mineru_environment``, ``azure_environment``, ``lighton_environment``.
 
 **Docling with tesseract**
 
@@ -104,7 +101,7 @@ OCR quality is subjectively graded and compared based on the markdown output sto
 
 ### Summary
 
-The following table summarizes the comparison of all methods on all PDFs. Extraction quality (Very good, Good, Medium, Poor) and GPU extraction speed in seconds are shown, as well as cost per page when running on an NVIDIA RTX 5090 GPU hosted on [runpod.io](https://www.runpod.io/) for 89ct/hour.
+The following table summarizes the comparison of all methods on all PDFs. Extraction quality (Excellent, Very good, Good, Medium, Poor) and GPU extraction speed in seconds are shown, as well as cost per page when running on an NVIDIA RTX 5090 GPU hosted on [runpod.io](https://www.runpod.io/) for 89ct/hour. We did not carry out any specific runtime optimizations for any method.
 
 <table>
   <thead>
@@ -131,7 +128,7 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
       <td>🟡 Medium (37s)</td>
       <td>🔴 Poor (7s)</td>
       <td>🟡 Medium (41s)</td>
-      <td>🟢 <strong>Very good</strong> (95s)</td>
+      <td>🟢 Very good (95s)</td>
       <td>0.11 ct</td>
     </tr>
     <tr>
@@ -139,16 +136,23 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
       <td>🟢 Good (12s)</td>
       <td>🔴 Poor (4s)</td>
       <td>🟢 Good (28s)</td>
-      <td>🟢 <strong>Very good</strong> (52s)</td>
+      <td>🟢 Very good (52s)</td>
       <td><strong>0.06 ct</strong></td>
     </tr>
     <tr>
       <td>Docling - suryaocr</td>
-      <td>🟢 <strong>Very good</strong> (31s)</td>
+      <td>🟢 Very good (31s)</td>
       <td>🔴 Poor (8s)</td>
       <td>🟢 Good (49s)</td>
-      <td>🟢 <strong>Very good</strong> (270s)</td>
+      <td>🟢 Very good (270s)</td>
       <td>0.17 ct</td>
+    </tr>
+    <tr>
+      <td>🔴 Poor (343s)</td>
+      <td>🟡 Medium (108s)</td>
+      <td>🔴 Poor (171s)</td>
+      <td>🟢 Good (597s)</td>
+      <td>1.16 ct</td>
     </tr>
     <tr>
       <td>marker</td>
@@ -163,23 +167,31 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
       <td>🟢 Good (42s)</td>
       <td>🔴 Poor (16s)</td>
       <td>🟢 Good (60s)</td>
-      <td>🟢 <strong>Very good</strong> (88s)</td>
+      <td>🟢 Very good (88s)</td>
       <td>0.17 ct</th>
     </tr>
     <tr>
       <td>Document Intelligence</td>
-      <td>🟢 <strong>Very good</strong> (8s)</td>
+      <td>🟢 Very good (8s)</td>
       <td>🟢 Good (5s)</td>
-      <td>🟢 <strong>Very good</strong> (14s)</td>
-      <td>🟢 <strong>Very good</strong> (10s)</td>
+      <td>🟢 Very good (14s)</td>
+      <td>🟢 <strong>Excellent</strong> (10s)</td>
       <td>1 ct</td>
+    </tr>
+    <tr>
+      <td>LightOnOCR-2-1B</td>
+      <td>🏆 <strong>Excellent</strong> (192s)</td>
+      <td>🏆 <strong>Excellent</strong> (23s)</td>
+      <td>🏆 <strong>Excellent</strong> (191s)</td>
+      <td>🏆 <strong>Excellent</strong> (416s)</td>
+      <td>0.5 ct</td>
     </tr>
   </tbody>
 </table>
 
-We can see that the proprietary Azure Document Intelligence yields the best results, both in extraction quality and speed, at least when compared against an NVIDIA RTX 5090 GPU. RapidOCR was the fastest open source alternative in our experiments.
+We can see that the open weights model LightOnOCR-2-1B yields the best results. The proprietary Azure Document Intelligence yields second-best results and has the highest speed, at least when compared against an NVIDIA RTX 5090 GPU. RapidOCR was the fastest open source alternative in our experiments.
 
-However, depending on the type of PDF, open source alternatives can yield similar performance. Especially when extraction speed does not matter as much (e.g., in offline computation settings), they can be a much cheaper alternative. Moreover, faster GPUs like an H200 or B200 could be used to catch up with Document Intelligence speed. In practice, we recommend running the experiments on your data domain to make a final choice.
+Especially when extraction speed does not matter as much (e.g., in offline computation settings), open source methods can be a much cheaper alternative. Moreover, faster GPUs like an H200 or B200 could be used to catch up with Document Intelligence speed. In practice, we recommend running the experiments on your data domain to make a final choice.
 
 The remainder shows a more detailed comparison for each PDF.
 
@@ -191,11 +203,11 @@ The remainder shows a more detailed comparison for each PDF.
 | Docling - EasyOCR | Medium (reads text well, confuses some table entries, doesn't read checkboxes correctly) | CPU: 129<br>MPS: 52<br>GPU: 37 | 11.4 GB |
 | Docling - RapidOCR | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 161<br>MPS: 160<br>GPU: 12 | 6.4 GB |
 | Docling - suryaocr | Very good (reads text well, gets table entries correct, gets most checkboxes correct) | CPU: 369<br>MPS: 337<br>GPU: 31 | 3.7 GB |
-| Docling - Granite | Poor (misses great share of text, gets table entries correct, misses checkboxes) | CPU: 313<br>MPS: 313<br>GPU: x | x GB |
+| Docling - Granite | Poor (misses great share of text, gets table entries correct, misses checkboxes) | CPU: 1564<br>MPS: 313<br>GPU: 343 | 5.8 GB |
 | marker | Good (reads text well, confuses some table entries, gets most checkboxes correct) | CPU: 229<br>MPS: 212<br>GPU: 29 | 11.8 GB |
 | MinerU | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 160<br>MPS: 50<br>GPU: 42 | 4.3 GB |
 | Document Intelligence | Very good (reads text well, gets table entries correct, gets some checkboxes correct) | 8 | 70 MB (processing happens in cloud) |
-| LightOnOCR-2-1B | Excellent (reads text well, gets table entries correct, gets all checkboxes correct) | CPU: x<br>MPS: 1993<br>GPU: x | x GB |
+| LightOnOCR-2-1B | Excellent (reads text well, gets table entries correct, gets all checkboxes correct) | CPU: 1828<br>MPS: 1993<br>GPU: 192 | 15.7 GB |
 
 ### NIST Handwriting Sample
 
@@ -205,11 +217,11 @@ The remainder shows a more detailed comparison for each PDF.
 | Docling - EasyOCR | Poor (mistakes most text for images) | CPU: 12<br>MPS: 6<br>GPU: 7 | 11.2 GB |
 | Docling - RapidOCR | Poor (mistakes most text for images) | CPU: 18<br>MPS: 16<br>GPU: 4 | 2.9 GB |
 | Docling - suryaocr | Poor (mistakes most text for images) | CPU: 48<br>MPS: 46<br>GPU: 8 | 1.8 GB |
-| Docling - Granite | Medium (recognizes around half the text correctly) | CPU: x<br>MPS: 7<br>GPU: x | x GB |
+| Docling - Granite | Medium (recognizes around half the text correctly) | CPU: 164<br>MPS: 7<br>GPU: 108 | 1.5 GB |
 | marker | Poor (mistakes half of the form for image, reads out remaining text well) | CPU: 31<br>MPS: 39<br>GPU: 5 | 7.8 GB |
 | MinerU | Poor (misses text and makes mistakes, does not align captions with content well) | CPU: 25<br>MPS: 16<br>GPU: 16 | 4.6 GB |
 | Document Intelligence | Good (reads all handwriting and text well, does not align captions with contents well) | 5 | 46 MB (processing happens in cloud) |
-| Lighton OCR | Excellent (reads all handwriting and text well, aligns all form contents perfectly) | CPU: 177<br>MPS: 168<br>GPU: x | x GB |
+| Lighton OCR | Excellent (reads all handwriting and text well, aligns all form contents perfectly) | CPU: 177<br>MPS: 168<br>GPU: 23 | x GB |
 
 ### World Food Bank 2020 Annual Report
 
@@ -219,10 +231,11 @@ The remainder shows a more detailed comparison for each PDF.
 | Docling - EasyOCR | Medium (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables mostly correct) | CPU: 166<br>MPS: 54<br>GPU: 41 | 13 GB |
 | Docling - RapidOCR | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 227<br>MPS: 200<br>GPU: 28 | 6.5 GB |
 | Docling - suryaocr | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 370<br>MPS: 358<br>GPU: 49 | 7.8 GB |
-| Docling - Granite | Poor (reads text well but often swallows it, gets table of contents correct, gets double layout sometimes correct, misses tables) | CPU: x<br>MPS: 127<br>GPU: x | x GB |
+| Docling - Granite | Poor (reads text well but often swallows it, gets table of contents correct, gets double layout sometimes correct, misses tables) | CPU: 838<br>MPS: 127<br>GPU: 171 | 1.8 GB |
 | marker | Good (reads text well, misses page numbers in table of contents, gets double column layout mostly correct, gets table entries correct) | CPU: 193<br>MPS: 168<br>GPU: 35 | 11.2 GB |
 | MinerU | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 263<br>MPS: 130<br>GPU: 60 | 4.4 GB |
 | Document Intelligence | Very good (reads text well, gets table of contents correct, gets double column layout mostly correct, gets table entries correct) | 14 | 64 MB (processing happens in cloud) |
+| Lighton OCR | Excellent (reads text well, gets table of contents correct, gets double column layout correct, gets table entries correct) | CPU: x<br>MPS: x<br>GPU: 191 | x GB |
 
 ### RKI: Epidemiologisches Bulletin
 
@@ -232,7 +245,8 @@ The remainder shows a more detailed comparison for each PDF.
 | Docling - EasyOCR | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 241<br>MPS: 108<br>GPU: 95 | 14 GB |
 | Docling - RapidOCR | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 542<br>MPS: 511<br>GPU: 52 | 6.4 GB |
 | Docling - suryaocr | Very good (reads text well, gets table of contents correct, gets table entries correct) | CPU: 712<br>MPS: 704<br>GPU: 270 | 8.2 GB |
-| Docling - Granite | Good (reads text well, gets table of contents correct, misses some tables) | CPU: x<br>MPS: 152<br>GPU: x | x GB |
+| Docling - Granite | Good (reads text well, gets table of contents correct, misses some tables) | CPU: 153<br>MPS: 152<br>GPU: 597 | 1.7 GB |
 | marker | Medium (reads text well, gets table of contents correct, mixes up table entries) | CPU: 479<br>MPS: 617<br>GPU: 143 | 12.1 GB |
 | MinerU | Very good (reads text well, gets table of contents partially correct, gets table entries correct) | CPU: 544<br>MPS: 156<br>GPU: 88 | 4.8 GB |
-| Document Intelligence | Very good (reads text well, gets table of contents correct, gets table entries correct) | 10 | 96 MB (processing happens in cloud) |
+| Document Intelligence | Excellent (reads text well, gets table of contents correct, gets table entries correct) | 10 | 96 MB (processing happens in cloud) |
+| Lighton OCR | Excellent (reads text well, gets table of contents correct, gets table entries correct) | CPU: x<br>MPS: x<br>GPU: 416 | x GB |
