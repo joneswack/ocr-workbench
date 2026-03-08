@@ -130,7 +130,7 @@ We can see that the open weights model LightOnOCR-2-1B yields the best results. 
 
 Especially when extraction speed does not matter as much (e.g., in offline computation settings), open source methods can be a much cheaper alternative. Moreover, faster GPUs like an H200 or B200 could be used to catch up with Document Intelligence speed. In practice, we recommend running the experiments on your data domain to make a final choice.
 
-Details about the qualitative evaluation can be found in the detailed evaluation section.
+Details about the qualitative evaluation can be found in the [qualitative evaluation details](#quatlitative-evaluation-details).
 
 ## Why do we still care about OCR?
 
