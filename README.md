@@ -4,6 +4,23 @@ OCR Workbench is a ready-to-use framework for easily comparing popular OCR libra
 
 Simply provide a collection of PDF files and compare all libraries using a single script.
 
+## Supported Libraries
+
+Currently, the following libraries are supported:
+- [Docling](https://docling-project.github.io/docling/) including tesseract, EasyOCR, RapidOCR, surya, Granite
+- [MinerU](https://opendatalab.github.io/MinerU/)
+- [Marker](https://github.com/datalab-to/marker)
+- [Azure Document Intelligence](https://azure.microsoft.com/en-us/products/ai-foundry/tools/document-intelligence)
+- [LightOnOCR-2-1B](https://huggingface.co/lightonai/LightOnOCR-2-1B)
+
+This selection focuses on benchmarking open source libraries against proprietary Azure Document Intelligence.
+
+**Features**
+- Running experiments with the above libraries via a single script
+- Automatic conversion of all provided PDF files in ``data/input`` into markdown using all methods
+- Hardware acceleration using CPU, MPS and CUDA
+- Time and cpu-memory tracking for each method
+
 ## Qualitative Evaluation on 4 Sample Documents
 
 Using our script, we produced OCR outputs for four example documents and compared them in terms of OCR quality as well as resource consumption.
@@ -170,23 +187,6 @@ The remainder shows a more detailed comparison for each PDF.
 | MinerU | Very good (reads text well, gets table of contents partially correct, gets table entries correct) | CPU: 544<br>MPS: 156<br>GPU: 88 | 4.8 GB |
 | Document Intelligence | Excellent (reads text well, gets table of contents correct, gets table entries correct) | 10 | 96 MB (processing happens in cloud) |
 | LightOnOCR-2-1B | Excellent (reads text well, gets table of contents correct, gets table entries correct) | CPU: 4187<br>MPS: 3987<br>GPU: 416 | 14.9 GB |
-
-## Supported Libraries
-
-Currently, the following libraries are supported:
-- [Docling](https://docling-project.github.io/docling/) including tesseract, EasyOCR, RapidOCR, surya, Granite
-- [MinerU](https://opendatalab.github.io/MinerU/)
-- [Marker](https://github.com/datalab-to/marker)
-- [Azure Document Intelligence](https://azure.microsoft.com/en-us/products/ai-foundry/tools/document-intelligence)
-- [LightOnOCR-2-1B](https://huggingface.co/lightonai/LightOnOCR-2-1B)
-
-This selection focuses on benchmarking open source libraries against proprietary Azure Document Intelligence.
-
-**Features**
-- Running experiments with the above libraries via a single script
-- Automatic conversion of all provided PDF files in ``data/input`` into markdown using all methods
-- Hardware acceleration using CPU, MPS and CUDA
-- Time and cpu-memory tracking for each method
 
 ## Why do we still care about OCR?
 
