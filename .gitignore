@@ -17,5 +17,7 @@ data/
 !data/.gitkeep
 !data/**/.gitkeep
 
+paddlevl_environment
+
 # Mac OS
 .DS_Store
