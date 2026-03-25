@@ -1,0 +1,9 @@
+[project]
+name = "chandra-environment"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "chandra-ocr[hf]>=0.2.0",
+]
