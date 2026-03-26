@@ -3,8 +3,8 @@
 # Global script to run experiments for different environments
 # Usage: ./run_all_experiments.sh -e <environment> [-a <accelerator-device>] [-i <pdf-path>]
 # Options:
-#   -e <environment>          Environment to run: docling, docint, lighton, marker, mineru
-#   -a <accelerator-device>   Accelerator device: cpu, mps, or cuda (default: cpu)
+#   -e <environment>          Environment to run: docling, docint, lighton, marker, mineru, chandra
+#   -a <accelerator-device>   Accelerator device: cpu, mps, or cuda (default: cpu) [not used for chandra]
 #   -i <pdf-path>             Specific PDF file to process (default: all PDFs)
 
 set -e
@@ -36,7 +36,7 @@ done
 # Validate environment
 if [ -z "$ENVIRONMENT" ]; then
     echo "Error: Environment must be specified with -e option."
-    echo "Accepted values: docling, docint, lighton, marker, mineru"
+    echo "Accepted values: docling, docint, lighton, marker, mineru, chandra"
     exit 1
 fi
 
@@ -161,9 +161,22 @@ case "$ENVIRONMENT" in
             run_experiment "$profile_file" "${cmd[@]}"
         done
         ;;
+    chandra)
+        echo "Running chandra experiment..."
+        output_dir="../data/output/chandra"
+        PROFILE_SUFFIX="_mem_auto.dat"
+
+        for input_file in $input_files; do
+            input_file=$(basename "$input_file")
+            profile_file="$output_dir/$(basename "$input_file" .pdf)$PROFILE_SUFFIX"
+            cmd=(chandra "../data/input/$input_file" "$output_dir" --method hf)
+            run_experiment "$profile_file" "${cmd[@]}"
+        done
+        ;;
+
     *)
         echo "Error: Invalid environment '$ENVIRONMENT'"
-        echo "Accepted values: docling, docint, lighton, marker, mineru"
+        echo "Accepted values: docling, docint, lighton, marker, mineru, chandra"
         cd ..
         exit 1
         ;;
