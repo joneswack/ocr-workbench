@@ -163,6 +163,7 @@ case "$ENVIRONMENT" in
         ;;
     chandra)
         echo "Running chandra experiment..."
+        echo "Warning: --accelerator-device has no effect for chandra. The accelerator is set automatically."
         output_dir="../data/output/chandra"
         PROFILE_SUFFIX="_mem_auto.dat"
 

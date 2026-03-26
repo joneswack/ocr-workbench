@@ -12,6 +12,7 @@ Currently, the following libraries are supported:
 - [Marker](https://github.com/datalab-to/marker)
 - [Azure Document Intelligence](https://azure.microsoft.com/en-us/products/ai-foundry/tools/document-intelligence)
 - [LightOnOCR-2-1B](https://huggingface.co/lightonai/LightOnOCR-2-1B)
+- [Chandra OCR 2](https://github.com/datalab-to/chandra)
 
 This selection focuses on benchmarking open source libraries against proprietary Azure Document Intelligence.
 
@@ -58,6 +59,14 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
       <td>🏆 <strong>Excellent</strong> (191s)</td>
       <td>🏆 <strong>Excellent</strong> (416s)</td>
       <td>0.5 ct</td>
+    </tr>
+    <tr>
+      <td>Chandra OCR 2</td>
+      <td>🏆 <strong>Excellent</strong> (376s)</td>
+      <td>🏆 <strong>Excellent</strong> (120s)</td>
+      <td>🏆 <strong>Excellent</strong> (476s)</td>
+      <td>🏆 <strong>Excellent</strong> (863s)</td>
+      <td>1.4 ct</td>
     </tr>
     <tr>
       <td>Document Intelligence</td>
@@ -126,9 +135,9 @@ The following table summarizes the comparison of all methods on all PDFs. Extrac
   </tbody>
 </table>
 
-We can see that the open weights model LightOnOCR-2-1B yields the best results. This is impressive, since it means that an open weights model can be used to save costs without sacrificing on extraction quality! The proprietary Azure Document Intelligence yields second-best results and has the highest speed, at least when compared against an NVIDIA RTX 5090 GPU. RapidOCR was the fastest open source alternative and therefore the cheapest model in our experiments.
+We can see that the open weights models LightOnOCR-2-1B and Chandra OCR 2 yield the best results. In the case of LightOnOCR-2-1B this is impressive, since it means that an open weights model can be used to save costs without sacrificing on extraction quality! The proprietary Azure Document Intelligence yields second-best results and has the highest speed, at least when compared against an NVIDIA RTX 5090 GPU. RapidOCR was the fastest open source alternative and therefore the cheapest model in our experiments.
 
-Especially when extraction speed does not matter as much (e.g., in offline computation settings), open source methods can be a much cheaper alternative. Moreover, faster GPUs like an H200 or B200 could be used to catch up with Document Intelligence speed. In practice, we recommend running the experiments on your data domain to make a final choice.
+Especially when extraction speed does not matter as much (e.g., in offline computation settings), open source methods can be a much cheaper alternative. Moreover, more powerful GPUs (H100 or better) could be used to catch up with Document Intelligence speed. Frameworks like [vLLM](https://docs.vllm.ai/en/latest/) and specifically compiled modules like [FlashAttention](https://github.com/dao-ailab/flash-attention) can then be used to further optimize inference speed.
 
 Details about the qualitative evaluation can be found in the [qualitative evaluation details](#quatlitative-evaluation-details).
 
@@ -213,6 +222,7 @@ For almost every environment, there exists an additional ``config.json`` file wi
 | MinerU | Good (reads text well, gets table entries correct, doesn't read checkboxes correctly) | CPU: 160<br>MPS: 50<br>GPU: 42 | 4.3 GB |
 | Document Intelligence | Very good (reads text well, gets table entries correct, gets some checkboxes correct) | 8 | 70 MB (processing happens in cloud) |
 | LightOnOCR-2-1B | Excellent (reads text well, gets table entries correct, gets all checkboxes correct) | CPU: 1828<br>MPS: 1993<br>GPU: 192 | 15.7 GB |
+| Chandra OCR 2 | Excellent (reads text well, gets table entries correct, gets all checkboxes correct) | CPU: X<br>MPS: X<br>GPU: 376 | OOM on MacBook Air M4 |
 
 ### NIST Handwriting Sample
 
@@ -227,6 +237,7 @@ For almost every environment, there exists an additional ``config.json`` file wi
 | MinerU | Poor (misses text and makes mistakes, does not align captions with content well) | CPU: 25<br>MPS: 16<br>GPU: 16 | 4.6 GB |
 | Document Intelligence | Good (reads all handwriting and text well, does not align captions with contents well) | 5 | 46 MB (processing happens in cloud) |
 | LightOnOCR-2-1B | Excellent (reads all handwriting and text well, aligns all form contents perfectly) | CPU: 170<br>MPS: 168<br>GPU: 23 | 12.4 GB |
+| Chandra OCR 2 | Excellent (reads all handwriting and text well, aligns all form contents perfectly) | CPU: X<br>MPS: X<br>GPU: 120 | OOM on MacBook Air M4 |
 
 ### World Food Bank 2020 Annual Report
 
@@ -241,6 +252,7 @@ For almost every environment, there exists an additional ``config.json`` file wi
 | MinerU | Good (reads text well, gets table of contents mostly correct, gets double column layout mostly correct, gets tables correct) | CPU: 263<br>MPS: 130<br>GPU: 60 | 4.4 GB |
 | Document Intelligence | Very good (reads text well, gets table of contents correct, gets double column layout mostly correct, gets table entries correct) | 14 | 64 MB (processing happens in cloud) |
 | LightOnOCR-2-1B | Excellent (reads text well, gets table of contents correct, gets double column layout correct, gets table entries correct) | CPU: 2440<br>MPS: 1881<br>GPU: 191 | 15 GB |
+| Chandra OCR 2 | Excellent (reads text well, gets table of contents correct, gets double column layout correct, gets table entries correct) | CPU: X<br>MPS: X<br>GPU: 476 | OOM on MacBook Air M4 |
 
 ### RKI: Epidemiologisches Bulletin
 
@@ -255,4 +267,4 @@ For almost every environment, there exists an additional ``config.json`` file wi
 | MinerU | Very good (reads text well, gets table of contents partially correct, gets table entries correct) | CPU: 544<br>MPS: 156<br>GPU: 88 | 4.8 GB |
 | Document Intelligence | Excellent (reads text well, gets table of contents correct, gets table entries correct) | 10 | 96 MB (processing happens in cloud) |
 | LightOnOCR-2-1B | Excellent (reads text well, gets table of contents correct, gets table entries correct) | CPU: 4187<br>MPS: 3987<br>GPU: 416 | 14.9 GB |
-
+| Chandra OCR 2 | Excellent (reads text well, gets table of contents correct, gets table entries correct) | CPU: X<br>MPS: X<br>GPU: 863 | OOM |
