@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+  "memory-profiler>=0.61.0",
   "torch",
   "chandra-ocr[hf]",
 ]
